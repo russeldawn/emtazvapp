@@ -13,12 +13,10 @@
 
 Route::get('/', 'UserListController@getUserList');
 
-Route::get('/home', 'UserListController@getBrgyList');
+Route::get('/home', 'UserInformationController@get_user_info');
 
 Route::get('/login', 'UserListController@formlist');
 
 Route::get('/signup', 'UserListController@signup');
 
-Route::get('/example', function () {
-    return '/example';
-});
+Route::get('/example', 'UserListController@getUserList');
