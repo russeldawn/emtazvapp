@@ -16,11 +16,11 @@ class CreateUserinformationTable extends Migration {
 		{
 			$table->bigIncrements('userid', true);
 			$table->string('username')->nullable();
-			$table->string('password')->nullable();
-			$table->string('firstname')->nullable();
-			$table->string('lastname')->nullable();
-			$table->string('middlename')->nullable();
-			$table->string('emailaddress')->unique()->nullable();
+			$table->string('password');
+			$table->string('firstname');
+			$table->string('lastname');
+			$table->string('middlename');
+			$table->string('emailaddress')->unique();
 			$table->string('typeofuser')->nullable();
 			$table->smallInteger('isverify')->nullable()->default(0);
 			$table->string('verificationcode')->nullable();

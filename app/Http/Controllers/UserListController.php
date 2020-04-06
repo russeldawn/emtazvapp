@@ -30,7 +30,7 @@ class UserListController extends Controller
 
     public function formlist()
     {
-        $list = DB::table('formlist')->get();
+        $list = DB::table('userinformation')->get();
         // return response()->json($list);
         return view('app', ['data' => $list]);
     }

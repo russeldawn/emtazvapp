@@ -70,9 +70,9 @@
 
       // Create `source` for video
       this.opt.src.forEach(function (srcOb, i, arr) {
-        var key
-          , val
-          , source = document.createElement('source');
+        var key,
+            val,
+            source = document.createElement('source');
 
         // Set all the attribute key=val supplied in `src` option
         for (key in srcOb) {
@@ -113,7 +113,7 @@
       }
 
       return;
-    }
+    },
 
     // Called once video metadata is available
     //
@@ -123,8 +123,8 @@
       if ('object-fit' in document.body.style) return;
 
       // Video's intrinsic dimensions
-      var w = this.videoEl.videoWidth
-        , h = this.videoEl.videoHeight;
+      var w = this.videoEl.videoWidth,
+          h = this.videoEl.videoHeight;
 
       // Intrinsic ratio
       // Will be more than 1 if W > H and less if H > W
@@ -134,17 +134,17 @@
       //
       // Also calculate the min dimensions required (this will be
       // the container dimentions)
-      var container = this.opt.container
-        , containerStyles = global.getComputedStyle(container)
-        , minW = parseInt( containerStyles.getPropertyValue('width') )
-        , minH = parseInt( containerStyles.getPropertyValue('height') );
+      var container = this.opt.container,
+          containerStyles = global.getComputedStyle(container),
+          minW = parseInt( containerStyles.getPropertyValue('width') ),
+          minH = parseInt( containerStyles.getPropertyValue('height') );
 
       // If !border-box then add paddings to width and height
       if (containerStyles.getPropertyValue('box-sizing') !== 'border-box') {
-        var paddingTop = containerStyles.getPropertyValue('padding-top')
-          , paddingBottom = containerStyles.getPropertyValue('padding-bottom')
-          , paddingLeft = containerStyles.getPropertyValue('padding-left')
-          , paddingRight = containerStyles.getPropertyValue('padding-right');
+        var paddingTop = containerStyles.getPropertyValue('padding-top'),
+            paddingBottom = containerStyles.getPropertyValue('padding-bottom'),
+            paddingLeft = containerStyles.getPropertyValue('padding-left'),
+            paddingRight = containerStyles.getPropertyValue('padding-right');
 
         paddingTop = parseInt(paddingTop);
         paddingBottom = parseInt(paddingBottom);
@@ -170,16 +170,18 @@
       // will become 600 proportionately.
       var widthRatio = minW / w;
       var heightRatio = minH / h;
+      var new_width = 0,
+          new_height = 0;
 
       // Whichever ratio is more, the scaling
       // has to be done over that dimension
       if (widthRatio > heightRatio) {
-        var new_width = minW;
-        var new_height = Math.ceil( new_width / videoRatio );
+        new_width = minW;
+        new_height = Math.ceil( new_width / videoRatio );
       }
       else {
-        var new_height = minH;
-        var new_width = Math.ceil( new_height * videoRatio );
+        new_height = minH;
+        new_width = Math.ceil( new_height * videoRatio );
       }
 
       this.videoEl.style.width = new_width + 'px';

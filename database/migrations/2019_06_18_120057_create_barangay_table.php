@@ -15,7 +15,7 @@ class CreateBarangayTable extends Migration {
 		Schema::create('barangay', function(Blueprint $table)
 		{
 			$table->integer('barangay_id', true);
-			$table->string('barangay_name')->nullable();
+			$table->string('barangay_name');
 		});
 	}
 

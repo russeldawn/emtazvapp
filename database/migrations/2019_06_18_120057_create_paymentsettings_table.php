@@ -14,9 +14,9 @@ class CreatePaymentsettingsTable extends Migration {
 	{
 		Schema::create('paymentsettings', function(Blueprint $table)
 		{
-			$table->integer('id')->primary('PK_paymentsettings');
-			$table->string('usage')->nullable();
-			$table->float('amount', 10, 0)->nullable();
+			$table->increments('id');
+			$table->string('usage');
+			$table->float('amount', 10, 0);
 		});
 	}
 

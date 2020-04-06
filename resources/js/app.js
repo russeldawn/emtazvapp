@@ -13,6 +13,7 @@ import Vue from 'vue';
 import router from "./router";
 import App from "../components/App";
 import store from "./store";
+import _ from "lodash";
 
 
 // import Antd from 'ant-design-vue';
@@ -86,6 +87,7 @@ import {
   Vue.prototype.$error = Modal.error;
   Vue.prototype.$warning = Modal.warning;
   Vue.prototype.$confirm = Modal.confirm;
+  Vue.prototype.$_ = _;
 
   /* v1.1.3+ registration methods */
   Vue.use(Affix);
@@ -159,7 +161,7 @@ Vue.config.productionTip = false;
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

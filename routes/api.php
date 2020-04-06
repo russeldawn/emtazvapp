@@ -17,6 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', 'API\AuthController@login');
+
+// Route::middleware('auth:api')->get('dashboard', function (Request $request) {
+//     return $request->user();
+// });
+
 Route::get('/user/list', 'UserListController@get_users_api');
 
 Route::get('/home', function () {

@@ -11,12 +11,19 @@
 |
 */
 
-Route::get('/', 'UserListController@getUserList');
+Route::get('/', 'LoginController@showLoginForm');
+Route::post('/', 'LoginController@login');
 
-Route::get('/home', 'UserInformationController@get_user_info');
+Route::get('/dashboard', 'UserInformationController@get_user_info')->middleware('auth:api');
 
-Route::get('/login', 'UserListController@formlist');
+Route::get('/', 'UserListController@formlist')->name('login');
+
+Route::get('/layout', 'DashboardController@index');
+
+Route::get('/layout/header', 'DashboardController@header');
 
 Route::get('/signup', 'UserListController@signup');
 
 Route::get('/example', 'UserListController@getUserList');
+
+// Auth::routes();

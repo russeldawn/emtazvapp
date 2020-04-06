@@ -15,7 +15,7 @@ class CreateTransactionremarksTable extends Migration {
 		Schema::create('transactionremarks', function(Blueprint $table)
 		{
 			$table->bigInteger('transactionid');
-			$table->bigInteger('remarksid', true);
+			$table->unsignedBigInteger('remarksid')->index();
 			$table->text('remarks')->nullable();
 			$table->date('remarksdate')->nullable();
 			$table->time('remarkstime')->nullable();

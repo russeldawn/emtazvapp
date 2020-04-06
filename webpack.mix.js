@@ -18,6 +18,7 @@ mix.js('resources/js/app.js', 'public/js')
   .sass('resources/sass/app.scss', 'public/css')
   .browserSync({ proxy: process.env.APP_URL, open: false });
 
+mix.options({ extractVueStyles: 'public/css/vue-style.css' });
 
 mix.webpackConfig({
   resolve: {

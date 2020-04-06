@@ -15,9 +15,9 @@ class CreateLanduseclassTable extends Migration {
 		Schema::create('landuseclass', function(Blueprint $table)
 		{
 			$table->bigInteger('landuse_id', true);
-			$table->string('landuse')->nullable();
-			$table->string('propose')->nullable();
-			$table->string('condition')->nullable();
+			$table->string('landuse');
+			$table->string('propose');
+			$table->string('condition');
 		});
 	}
 

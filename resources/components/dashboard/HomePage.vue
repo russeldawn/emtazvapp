@@ -1,6 +1,7 @@
 <template>
   <div>
     <a-menu
+      theme="dark"
       @click="handleClick"
       style="width: 256px"
       :defaultSelectedKeys="['1']"
@@ -55,6 +56,10 @@
       </li>
 
       <li>
+        <router-link :to="{name:'layout'}">Layout</router-link>
+      </li>
+
+      <li>
         <router-link :to="{name:'login'}">Login</router-link>
       </li>
       <li>
@@ -69,6 +74,15 @@
       <li>
         <router-link :to="{name: 'sidemenu'}">SideMenu</router-link>
       </li>
+      <li>
+        <router-link :to="{name: 'header'}">CustomerHeader</router-link>
+      </li>
+      <li>
+        <router-link :to="{name: 'dashboard'}">Dashboard</router-link>
+      </li>
+      <!-- <li>
+        <router-link :to="{name: 'dashboard2'}">Dashboard2</router-link>
+      </li> -->
       <li>
         <router-link :to="{name: 'sidebar'}">Sidebar</router-link>
       </li>
