@@ -1,5 +1,6 @@
 require('dotenv').config();
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+
 
 /*
  |--------------------------------------------------------------------------
@@ -13,10 +14,14 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-  .js('resources/js/bideo.js', 'public/js')
-  .js('resources/js/main.js', 'public/js')
-  .sass('resources/sass/app.scss', 'public/css')
-  .browserSync({ proxy: process.env.APP_URL, open: false });
+    .js('resources/js/bideo.js', 'public/js')
+    .js('resources/js/main.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .copyDirectory('resources/images', 'public/images')
+    .extract(['vue'])
+    .sourceMaps();
+
+
 
 mix.options({ extractVueStyles: 'public/css/vue-style.css' });
 

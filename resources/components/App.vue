@@ -1,22 +1,19 @@
 <template>
-    <router-view></router-view>
+    <div>
+        <router-view></router-view>
+    </div>
 </template>
-
 <script>
-import mixins from "../js/mixin";
 
-export default {
-    mixins: [mixins],
-    components: {
-
-    },
-    data() {
-        return {
-
-        }
-    },
-    methods: {
-
+    export default {
+        data() {
+            return {
+                csrf_token: window.csrf_token
+            }
+        },
     }
-}
 </script>
+
+<style>
+
+</style>

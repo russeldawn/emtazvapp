@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,22 +16,4 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
-
-Route::post('login', 'API\AuthController@login');
-
-// Route::middleware('auth:api')->get('dashboard', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::get('/user/list', 'UserListController@get_users_api');
-
-Route::get('/home', function () {
-    return 'home';
-});
-Route::get('/signup', function () {
-    return 'signup';
-});
-Route::get('/login', function () {
-    return 'login';
 });

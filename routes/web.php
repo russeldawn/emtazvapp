@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,19 +13,12 @@
 |
 */
 
-Route::get('/', 'LoginController@showLoginForm');
-Route::post('/', 'LoginController@login');
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
-Route::get('/dashboard', 'UserInformationController@get_user_info')->middleware('auth:api');
+Route::prefix('dashboard')->group(function () {
 
-Route::get('/', 'UserListController@formlist')->name('login');
+    Route::view('/', 'layouts/app')->name('dashboard');
 
-Route::get('/layout', 'DashboardController@index');
+});
 
-Route::get('/layout/header', 'DashboardController@header');
-
-Route::get('/signup', 'UserListController@signup');
-
-Route::get('/example', 'UserListController@getUserList');
-
-// Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace App;
 
+<<<<<<< HEAD:app/Model/UserList.php
 use Illuminate\Database\Eloquent\Model;
 
 class UserList extends Model
@@ -27,6 +28,15 @@ class UserList extends Model
      * @var string
      */
     protected $primaryKey = 'userid';
+=======
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+>>>>>>> master:app/User.php
 
     /**
      * The attributes that are mass assignable.
