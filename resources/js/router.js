@@ -10,7 +10,6 @@ import axios from "axios";
 import store from "./store";
 
 Vue.use(VueRouter);
-console.log(System.import);
 
 let router = new VueRouter({
     mode: 'history',
