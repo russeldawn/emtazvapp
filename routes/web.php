@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,14 +13,12 @@
 |
 */
 
-Route::get('/', 'UserListController@getUserList');
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
-Route::get('/home', 'UserListController@getBrgyList');
+Route::prefix('dashboard')->group(function () {
 
-Route::get('/login', 'UserListController@formlist');
+    Route::view('/', 'layouts/app')->name('dashboard');
 
-Route::get('/signup', 'UserListController@signup');
-
-Route::get('/example', function () {
-    return '/example';
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
