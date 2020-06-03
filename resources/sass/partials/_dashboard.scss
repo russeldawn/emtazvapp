@@ -1,0 +1,105 @@
+
+
+// DASHBOARD CSS
+
+#dashboard-layout {
+	height: 100%;
+	height: -webkit-fill-available;
+
+	.ant-menu-item,
+	.ant-menu-submenu-title {
+
+		&,
+		&-selected {
+			a {
+				color: #fff;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+
+		#side-menu-trigger {
+			background-color: none;
+		}
+
+		.anticon {
+			font-size: 25px;
+		}
+	}
+
+
+	.ant-menu-submenu {
+
+		&-title {
+			.anticon,
+			span {
+				color: #fff;
+			}
+		}
+
+		// &-open {
+		// 	&-arrow
+		// 	.anticon,
+		// 	span {
+		// 		color: #fff;
+		// 	}
+		// }
+
+	}
+
+	.ant-layout-header {
+
+
+		.trigger,
+		.ant-menu-submenu-title {
+
+			font-size: 18px;
+			line-height: 64px;
+			padding: 0 24px;
+			cursor: pointer;
+			transition: color .3s;
+
+			&:hover {
+				color: #1890ff;
+			}
+
+		}
+
+		#user-menu {
+			float: right;
+
+		// 	.anticon {
+		// 		font-size: 18px;
+		// 	}
+		}
+
+		.ant-menu-submenu {
+
+			&-title {
+
+				.anticon,
+				span {
+					color: rgba(0,0,0,0.65);
+
+					&:hover {
+						color: #1890ff;
+					}
+				}
+			}
+
+		}
+
+	}
+
+	.logo {
+		height: 32px;
+		background: rgba(255, 255, 255, .2);
+		margin: 16px;
+	}
+
+
+}
+
+// END OF DASHBOARD CSS

@@ -26,6 +26,7 @@
           <a-menu-item key="4">Option 4</a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
+
       <a-sub-menu key="sub2" @titleClick="titleClick">
         <span slot="title">
           <a-icon type="appstore"/>

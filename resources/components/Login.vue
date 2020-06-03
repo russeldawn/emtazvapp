@@ -8,8 +8,8 @@
 
         <div id="login_content">
             <div id="head">
-                <h1>ZVAPP</h1>
-                <!-- <p class="sub_head">Mandaue ZVAPP Application</p> -->
+                <h1>EMTA SERVICES</h1>
+                <p class="sub_head">Mandaue ZVAPP Application</p>
                 <!-- <p class="info">(Hold on! The video might take a while to load.)</p> -->
             </div>
             <a-form
@@ -53,10 +53,18 @@
 </template>
 
 <script>
+import videoInit from "../js/bideo";
+import initialize from "../js/main";
 
 export default {
-	beforeCreate() {
-		this.form = this.$form.createForm(this);
+    beforeCreate() {
+        this.form = this.$form.createForm(this);
+    },
+	mounted() {
+
+        videoInit();
+        initialize();
+
 	},
 	data() {
 		return {
@@ -96,6 +104,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Demo page specific styles */
+
+body {
+    text-align: center;
+	font-family: 'proxima-nova', Helvetica;
+}
+
 
 </style>
