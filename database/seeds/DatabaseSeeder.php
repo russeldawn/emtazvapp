@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(LandUseTableSeeder::class);
         // $this->call(LandUseProposeTableSeeder::class);
         // $this->call(LandUseConditionTableSeeder::class);
-        // $this->call(LandUseClassTableSeeder::class);
+        // $this->call(LandUseClassTableSeeder2::class);
         // $this->call(PaymentSettingsTableSeeder::class);
         // $this->call(ProjectTypeNameTableSeeder::class);
         // $this->call(ProjectTypeTableSeeder::class);

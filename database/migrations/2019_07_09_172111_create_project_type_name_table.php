@@ -15,7 +15,7 @@ class CreateProjectTypeNameTable extends Migration
     {
         Schema::create('project_type_name', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->longText('name');
             $table->timestamps();
         });
     }

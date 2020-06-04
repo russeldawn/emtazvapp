@@ -12,8 +12,7 @@
 
 			<a-sub-menu id="user-menu">
 				<span slot="title" class="submenu-title-wrapper">
-					User <a-icon type="setting" />
-
+					<a-icon type="setting" />
 				</span>
 
 				<a-menu-item-group title="Info">
