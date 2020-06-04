@@ -21,12 +21,15 @@ mix.js('resources/js/app.js', 'public/js')
     .extract(['vue'])
     .sourceMaps();
 
+if (mix.inProduction()) {
+    mix.version();
+}
 
 
 mix.options({ extractVueStyles: 'public/css/vue-style.css' });
 
 mix.webpackConfig({
   resolve: {
-    alias: { 'vue$': 'vue/dist/vue.runtime.esm.js' }
+    alias: { 'vue$': 'vue/dist/vue.min.js' }
   }
 });
