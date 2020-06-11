@@ -14,7 +14,6 @@ import store from './store';
 import App from '../components/App.vue';
 
 
-
 import {
     Form,
     message,
@@ -29,7 +28,17 @@ import {
     List,
     Switch,
     Skeleton,
-    Avatar,
+	Avatar,
+	Table,
+	Tag,
+	Divider,
+	PageHeader,
+	Statistic,
+	Row,
+	Spin,
+	Card,
+	Col,
+	Slider,
 } from 'ant-design-vue';
 
 
@@ -45,6 +54,16 @@ Vue.use(List);
 Vue.use(Switch);
 Vue.use(Skeleton);
 Vue.use(Avatar);
+Vue.use(Table);
+Vue.use(Tag);
+Vue.use(PageHeader);
+Vue.use(Statistic);
+Vue.use(Row);
+Vue.use(Spin);
+Vue.use(Card);
+Vue.use(Col);
+Vue.use(Slider,);
+
 
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
@@ -81,6 +100,7 @@ Vue.config.productionTip = false;
 // });
 
 
+// Vue.component('loader', require('../components/Partials/Loader.vue').default);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUserlistTable extends Migration {
 
@@ -14,15 +15,18 @@ class CreateUserlistTable extends Migration {
 	{
 		Schema::create('userlist', function(Blueprint $table)
 		{
+			$table->id();
 			$table->string('userpassword');
 			$table->string('username');
 			$table->boolean('isactive')->nullable()->default(1);
 			$table->boolean('isadmin')->nullable()->default(1);
 			$table->datetimetz('datemodified')->nullable();
-			$table->string('userid')->primary('PK_UserID');
+			$table->string('userid')->unique();
 			$table->boolean('canreview')->nullable()->default(0);
 			$table->boolean('canapprove')->nullable()->default(0);
 			$table->string('userposition')->nullable();
+			$table->rememberToken();
+			$table->timestamps();
 		});
 	}
 

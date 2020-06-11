@@ -6,8 +6,10 @@ import MainPage from "../components/dashboard/Main.vue";
 import HomePage from '../components/dashboard/HomePage.vue'
 import CustomHeader from '../components/dashboard/CustomHeader.vue';
 import SideMenu from '../components/dashboard/SideMenu.vue';
+import UserList from "../components/dashboard/UserList.vue";
 import axios from "axios";
 import store from "./store";
+
 
 Vue.use(VueRouter);
 
@@ -20,14 +22,19 @@ let router = new VueRouter({
             name: 'login'
         },
         {
-            path: '/dashboard',
+            path: '/',
             component: Dashboard,
             name: 'dashboard',
             children: [
                 {
-                    path: '',
+                    path: 'dashboard',
                     component: MainPage,
                     name: 'main'
+                },
+                {
+                    path: '/users',
+                    component: UserList,
+                    name: 'users'
                 },
                 {
                     path: 'home',

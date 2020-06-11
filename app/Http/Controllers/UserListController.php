@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\UserList;
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +10,7 @@ class UserListController extends Controller
 {
     public function getUserList()
     {
-        $users = UserList::all();
+        $users = User::all();
         return view('app', ['data' => $users]);
     }
 
@@ -37,7 +37,7 @@ class UserListController extends Controller
 
     public function get_users_api()
     {
-        $users = UserList::all();
+        $users = User::all();
 
         return $users;
 

@@ -1,9 +1,9 @@
 
 <template>
   <div>
-    <a-spin :spinning="spinning" :delay="delayTime">
+    <a-spin size="large" :tip="tip" :spinning="spinning" :delay="delayTime">
       <div class="spin-content">
-        可以点击‘切换’按钮，延迟显示 loading 效果。当 spinning 状态在 `delay` 时间内结束，则不显示 loading 状态。
+        THIS IS CURRENTLY LOADING
       </div>
     </a-spin>
     Loading state：<a-switch v-model="spinning"></a-switch>
@@ -14,7 +14,8 @@
   export default {
     data () {
       return {
-        spinning: false,
+		tip: 'Loading...',
+        spinning: true,
         delayTime: 500,
       }
     },

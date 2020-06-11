@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLanduseclassTable extends Migration {
 
@@ -15,9 +16,9 @@ class CreateLanduseclassTable extends Migration {
 		Schema::create('landuseclass', function(Blueprint $table)
 		{
 			$table->bigInteger('landuse_id', true);
-			$table->longText('landuse');
-			$table->string('propose');
-			$table->string('condition');
+			$table->string('landuse')->nullable();
+			$table->string('propose')->nullable();
+			$table->string('condition')->nullable();
 		});
 	}
 

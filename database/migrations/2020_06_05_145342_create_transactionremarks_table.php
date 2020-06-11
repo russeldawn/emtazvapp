@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTransactionremarksTable extends Migration {
 
@@ -15,7 +16,7 @@ class CreateTransactionremarksTable extends Migration {
 		Schema::create('transactionremarks', function(Blueprint $table)
 		{
 			$table->bigInteger('transactionid');
-			$table->unsignedBigInteger('remarksid')->index();
+			$table->unsignedInteger('remarksid');
 			$table->text('remarks')->nullable();
 			$table->date('remarksdate')->nullable();
 			$table->time('remarkstime')->nullable();

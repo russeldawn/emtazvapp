@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\UserInformation;
+use App\Model\User;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         dd($request->all());
-        $user = UserInformation::where('emailaddress', $request->email)->first();
+        $user = User::where('emailaddress', $request->email)->first();
 
         // return $user;
         if (!$user) {

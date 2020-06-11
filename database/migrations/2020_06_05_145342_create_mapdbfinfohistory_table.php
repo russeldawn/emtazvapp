@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMapdbfinfohistoryTable extends Migration {
 
@@ -20,7 +21,7 @@ class CreateMapdbfinfohistoryTable extends Migration {
 			$table->date('pindate');
 			$table->time('pintime');
 			$table->float('newarea', 10, 0)->nullable();
-			$table->bigIncrements('id', true);
+			$table->integer('id')->nullable();
 			$table->float('newlongitude', 10, 0)->nullable();
 			$table->float('newlatitude', 10, 0)->nullable();
 			$table->float('newperimeter', 10, 0)->nullable();

@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsettingsTable extends Migration {
+class CreateBarangayTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +13,10 @@ class CreatePaymentsettingsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('paymentsettings', function(Blueprint $table)
+		Schema::create('barangay', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->string('usage');
-			$table->float('amount', 10, 0);
+			$table->integer('barangay_id', true);
+			$table->string('barangay_name')->nullable();
 		});
 	}
 
@@ -28,7 +28,7 @@ class CreatePaymentsettingsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('paymentsettings');
+		Schema::drop('barangay');
 	}
 
 }

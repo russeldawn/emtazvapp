@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateMapdbfinfoTable extends Migration {
+class CreateMapdbfinfosubbackupTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +13,10 @@ class CreateMapdbfinfoTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('mapdbfinfo', function(Blueprint $table)
+		Schema::create('mapdbfinfosubbackup', function(Blueprint $table)
 		{
 			$table->integer('shapeid');
-			$table->bigIncrements('id');
+			$table->integer('id');
 			$table->string('name')->nullable();
 			$table->float('longitudei', 10, 0)->nullable();
 			$table->float('latitudei', 10, 0)->nullable();
@@ -24,8 +25,7 @@ class CreateMapdbfinfoTable extends Migration {
 			$table->float('perimeter', 10, 0)->nullable();
 			$table->float('hectares', 10, 0)->nullable();
 			$table->string('class')->nullable();
-			$table->string('oldname')->nullable();
-			$table->string('details')->nullable();
+			$table->date('pindate');
 		});
 	}
 
@@ -37,7 +37,7 @@ class CreateMapdbfinfoTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('mapdbfinfo');
+		Schema::drop('mapdbfinfosubbackup');
 	}
 
 }

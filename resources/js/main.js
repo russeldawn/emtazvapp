@@ -29,8 +29,8 @@ function invokeBideo() {
 
         src: [
             {
-            src: 'https://empta-zvapp.s3-ap-southeast-1.amazonaws.com/video/night.mp4',
-            type: 'video/mp4'
+				src: 'https://empta-zvapp.s3-ap-southeast-1.amazonaws.com/video/night.mp4',
+				type: 'video/mp4'
             },
         ],
 

@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSmsoutboundTable extends Migration {
+class CreateSmsinboundTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +13,10 @@ class CreateSmsoutboundTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('smsoutbound', function(Blueprint $table)
+		Schema::create('smsinbound', function(Blueprint $table)
 		{
-			$table->bigInteger('outboundid', true);
-			$table->string('sent_num')->nullable();
+			$table->integer('smsinboundid', true);
+			$table->string('cell_num')->nullable();
 			$table->text('message')->nullable();
 			$table->time('datetime')->nullable();
 		});
@@ -29,7 +30,7 @@ class CreateSmsoutboundTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('smsoutbound');
+		Schema::drop('smsinbound');
 	}
 
 }

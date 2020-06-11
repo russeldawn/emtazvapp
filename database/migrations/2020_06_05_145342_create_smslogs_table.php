@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateUseractivitylogsTable extends Migration {
+class CreateSmslogsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +13,12 @@ class CreateUseractivitylogsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('useractivitylogs', function(Blueprint $table)
+		Schema::create('smslogs', function(Blueprint $table)
 		{
-			$table->integer('useractivityid', true);
-			$table->text('activity')->nullable();
+			$table->integer('smslogid', true);
+			$table->string('sent_num')->nullable();
+			$table->text('message')->nullable();
 			$table->time('datetime')->nullable();
-			$table->integer('userid')->nullable();
 		});
 	}
 
@@ -29,7 +30,7 @@ class CreateUseractivitylogsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('useractivitylogs');
+		Schema::drop('smslogs');
 	}
 
 }

@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Route::prefix('dashboard')->group(function () {
-
     Route::view('/', 'layouts/app')->name('dashboard');
-
 });
+
+Route::view('/users', 'layouts/app')->name('users');
 
 Route::get('/home', 'HomeController@index')->name('home');

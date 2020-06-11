@@ -2,13 +2,22 @@
 	<a-layout id="dashboard-layout">
 		<a-layout-sider :trigger="null" collapsible v-model="collapsed">
 			<div class="logo">
-				<span>ZVAP</span>
+				<!-- <span>ZVAP</span> -->
 			</div>
 
-			<a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">
+			<a-menu theme="dark" mode="inline" :defaultSelectedKeys="activeMenu">
+
+				<a-menu-item key="0">
+					<router-link :to="{ name: 'main' }">
+						<a-icon type="pie-chart" />
+						<span>
+							Dashboard
+						</span>
+					</router-link>
+				</a-menu-item>
 
 				<a-menu-item key="1">
-					<router-link :to="{ name: 'main' }">
+					<router-link :to="{ name: 'users' }">
 						<a-icon type="user" />
 						<span>
 							User
@@ -111,8 +120,17 @@
 					minHeight: '280px'
 				}"
 			>
-				Content
+
+
+				<a-page-header v-if="show" :title="pageTitle" sub-title="This is a subtitle" @back="() => $router.go(-1)">
+					<template slot="Title">
+						{{ this.$route.name == 'main' ? 'Dashboard' : this.$route.name }}
+					</template>
+
+				</a-page-header>
+
 				<router-view></router-view>
+
 			</a-layout-content>
 		</a-layout>
 	</a-layout>
@@ -120,13 +138,35 @@
 
 <script>
 import Header from "./Partials/Header";
+import Helper from '../js/services/helper';
 
 export default {
 	components: {
 		Header
 	},
+	beforeMount() {
+		if (this.$route.name != 'main') {
+			this.show = true;
+		}
+
+		this.dashboardMenuActiveSwitch(this.$route.name);
+
+		this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name)
+	},
+	watch: {
+        $route(to,from) {
+
+			this.dashboardMenuActiveSwitch(to.name);
+
+			this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name)
+
+        }
+    },
 	data() {
 		return {
+			pageTitle: '',
+			activeMenu: [],
+			show: false,
 			collapsed: false
 		};
 	},
@@ -134,9 +174,24 @@ export default {
 		toggleMenu(val){
 			console.log('val: ', val);
 			this.collapsed = val;
+		},
+		dashboardMenuActiveSwitch(activeMenuName) {
+
+			switch (activeMenuName) {
+				case 'main':
+					this.activeMenu = [];
+					this.activeMenu.push('0');
+					break;
+				case 'users':
+					this.activeMenu = [];
+					this.activeMenu.push('1');
+					break;
+			}
+
 		}
 	}
 };
 </script>
 
-<style></style>
+<style>
+</style>

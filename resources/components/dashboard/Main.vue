@@ -1,67 +1,94 @@
 <template>
-  <div>
-    <a-switch :checked="!loading" @change="onChange"/>
+	<div id="components-grid">
 
-    <a-list itemLayout="vertical" size="large" :dataSource="listData">
-      <a-list-item slot="renderItem" slot-scope="item, index" key="item.title">
-        <template v-if="!loading" slot="actions" v-for="{type, text} in actions">
-          <span :key="type">
-            <a-icon :type="type" style="margin-right: 8px"/>
-            {{text}}
-          </span>
-        </template>
-        <img
-          v-if="!loading"
-          slot="extra"
-          width="272"
-          alt="logo"
-          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-        >
-        <a-skeleton :loading="loading" active avatar>
-          <a-list-item-meta :description="item.description">
-            <a slot="title" :href="item.href">{{item.title}}</a>
-            <a-avatar slot="avatar" :src="item.avatar"/>
-          </a-list-item-meta>
-          {{item.content}}
-        </a-skeleton>
-      </a-list-item>
-    </a-list>
-  </div>
+		<a-row :gutter="[16, 16]">
+
+			<a-col :span="6">
+				<a-card hoverable :loading="loading">
+					<a-card-meta title="Card title" description="This is the description">
+						<a-icon slot="icon" type="alert" />
+					</a-card-meta>
+				</a-card>
+			</a-col>
+
+			<a-col :span="6">
+				<a-card hoverable :loading="loading">
+					<a-card-meta title="Card title" description="This is the description">
+						<a-icon slot="icon" type="book" />
+					</a-card-meta>
+				</a-card>
+			</a-col>
+
+			<a-col :span="6">
+				<a-card hoverable :loading="loading">
+					<a-card-meta title="Card title" description="This is the description">
+						<a-icon slot="icon" type="calendar" />
+					</a-card-meta>
+				</a-card>
+			</a-col>
+
+			<a-col :span="6">
+				<a-card hoverable :loading="loading">
+					<a-card-meta title="Card title" description="This is the description">
+						<a-icon slot="icon" type="credit-card" />
+					</a-card-meta>
+				</a-card>
+			</a-col>
+
+			<a-col :span="6">
+				<a-card hoverable :loading="loading">
+					<a-card-meta title="Card title" description="This is the description">
+						<a-icon slot="icon" type="carry-out" />
+						<a-avatar
+							slot="avatar"
+							src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+						/>
+					</a-card-meta>
+				</a-card>
+			</a-col>
+
+		</a-row>
+
+	</div>
 </template>
+
 <script>
-const listData = [];
-for (let i = 0; i < 3; i++) {
-  listData.push({
-    href: "https://vue.ant.design/",
-    title: `ant design vue part ${i}`,
-    avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-    description:
-      "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-    content:
-      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-  });
-}
+
 export default {
-  data() {
-    return {
-      loading: true,
-      listData,
-      actions: [
-        { type: "star-o", text: "156" },
-        { type: "like-o", text: "156" },
-        { type: "message", text: "2" }
-      ]
-    };
-  },
-  methods: {
-    onChange(checked) {
-      this.loading = !checked;
-    }
-  }
+	mounted() {
+		setTimeout(() => {
+			this.handleClick();
+		}, 2000);
+	},
+	data() {
+		return {
+			loading: true,
+		};
+	},
+	methods: {
+		handleClick() {
+			this.loading = !this.loading;
+		},
+	},
 };
+
 </script>
-<style>
-.skeleton-demo {
-  border: 1px solid #f4f4f4;
+
+<style scoped>
+#components-grid [class~='ant-col'] {
+  background: transparent;
+  border: 0;
+}
+#components-grid [class~='ant-col'] > div {
+  background: #00a0e9;
+  height: 120px;
+  line-height: 120px;
+  font-size: 13px;
+}
+#components-grid pre {
+  background: #f9f9f9;
+  border-radius: 6px;
+  font-size: 13px;
+  padding: 8px 16px;
 }
 </style>

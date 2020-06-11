@@ -63,7 +63,8 @@ export default {
 	mounted() {
 
         videoInit();
-        initialize();
+		initialize();
+
 
 	},
 	data() {
