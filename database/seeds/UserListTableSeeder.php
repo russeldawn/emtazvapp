@@ -15,7 +15,7 @@ class UserListTableSeeder extends Seeder
 		$users = User::all();
 
 		foreach ($users as $user) {
-			$user->userpassword = bcrypt('password');
+			$user->userpassword = bcrypt('test');
 			$user->save();
 		}
     }

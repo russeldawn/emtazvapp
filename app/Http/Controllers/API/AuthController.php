@@ -16,31 +16,31 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        dd($request->all());
-        $user = User::where('emailaddress', $request->email)->first();
+
+        $user = User::where('userid', $request->username)->first();
 
         // return $user;
         if (!$user) {
             return response()->json([
-                'message' => 'Wrong email or password',
+                'message' => 'Wrong username or password',
                 'status' => 401
             ], 401);
         }
 
-        $user_verified = $user->isverify;
+        // $user_verified = $user->isverify;
 
-        if (!$user_verified) {
-            return response()->json([
-                'message' => 'Activate your email first. Please check your email for the activation code.',
-                'status' => 401
-            ], 401);
-        }
+        // if (!$user_verified) {
+        //     return response()->json([
+        //         'message' => 'Activate your email first. Please check your email for the activation code.',
+        //         'status' => 401
+        //     ], 401);
+        // }
 
         // If a user with the email was found - check if the specified password
         // belongs to this user
-        if (!Hash::check($request->password, $user->password)) {
+        if (!Hash::check($request->password, $user->userpassword)) {
             return response()->json([
-                'message' => 'Wrong email or password',
+                'message' => 'Wrong username or password',
                 'status' => 401
             ], 401);
         }
@@ -52,7 +52,7 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             'expires_in' => $expires_in,
             'token' => $token->accessToken,
-            'user' => $user,
+            // 'user' => $user,
             'status' => 200
         ]);
 

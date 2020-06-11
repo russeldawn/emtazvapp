@@ -21,8 +21,8 @@
 
                 <a-form-item>
                     <a-input
-                    v-decorator="['email',{ rules: [{ required: true, message: 'Please input your email!' }] }]"
-                    placeholder="Email"
+                    v-decorator="['userName',{ rules: [{ required: true, message: 'Please input your username!' }] }]"
+                    placeholder="Username"
                     >
                     <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
                     </a-input>
@@ -97,10 +97,6 @@ export default {
 			// });
             this.$router.push('/dashboard');
 		},
-        // onChange(picked) {
-		// 	console.log('picked date: ', picked);
-
-		// },
     }
 }
 </script>
