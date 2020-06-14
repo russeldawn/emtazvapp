@@ -10,6 +10,12 @@ import UserList from "../components/dashboard/UserList.vue";
 import axios from "axios";
 import store from "./store";
 
+// component:
+//       () => import(/* webpackChunkName: "dashboard" */ './pages/Dashboard.vue'),
+//   },
+
+// const Login =
+// 	() => import(/* webpackChunkName: "dynamically-imported-component" */ "../components/Login.vue");
 
 Vue.use(VueRouter);
 
@@ -24,12 +30,12 @@ let router = new VueRouter({
         {
             path: '/',
             component: Dashboard,
-            name: 'dashboard',
+            name: 'main',
             children: [
                 {
                     path: 'dashboard',
                     component: MainPage,
-                    name: 'main'
+                    name: 'dashboard'
                 },
                 {
                     path: '/users',
@@ -37,20 +43,41 @@ let router = new VueRouter({
                     name: 'users'
                 },
                 {
-                    path: 'home',
+                    path: '/zoning/add',
                     component: HomePage,
-                    name: 'home'
+                    name: 'add_zoning'
                 },
                 {
-                    path: 'header',
+                    path: '/zoning/endorse',
+                    component: HomePage,
+                    name: 'endorse_zoning'
+                },
+                {
+                    path: '/zoning/approve',
+                    component: HomePage,
+                    name: 'approve_zoning'
+                },
+                {
+                    path: 'land-use',
                     component: CustomHeader,
-                    name: 'header'
+                    name: 'land_use'
+				},
+				{
+                    path: '/business/add',
+                    component: CustomHeader,
+                    name: 'add_business'
                 },
                 {
-                    path: 'sidemenu',
-                    component: SideMenu,
-                    name: 'sidemenu'
+                    path: '/business/approve',
+                    component: CustomHeader,
+                    name: 'approve_business'
                 },
+                {
+                    path: 'payment',
+                    component: SideMenu,
+                    name: 'payment'
+				},
+
             ]
         },
         {

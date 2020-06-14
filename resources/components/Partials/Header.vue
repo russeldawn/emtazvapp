@@ -40,9 +40,8 @@ export default {
 	},
 	methods: {
 		toggleMenu() {
-			console.log('this.hideMenu before: ', this.hideMenu);
+
 			this.hideMenu = !this.hideMenu;
-			console.log('this.hideMenu after: ', this.hideMenu);
 
 			this.$emit('toggleMenu', this.hideMenu);
 		}

@@ -99,6 +99,15 @@
 		margin: 16px;
 	}
 
+	.ant-layout {
+		.ant-layout-content {
+			.ant-page-header {
+				padding-right: 0;
+				padding-left: 0;
+			}
+		}
+	}
+
 
 }
 

@@ -39,7 +39,14 @@ import {
 	Card,
 	Col,
 	Slider,
+	DatePicker,
 } from 'ant-design-vue';
+
+import RangePicker from 'ant-design-vue/es/date-picker/RangePicker';
+// import 'ant-design-vue/lib/date-picker/style/css';
+
+// const RangePicker =
+// 	() => import(/* webpackChunkName: "range-picker" */ 'ant-design-vue/types/date-picker/range-picker');
 
 
 Vue.use(Form);
@@ -56,13 +63,17 @@ Vue.use(Skeleton);
 Vue.use(Avatar);
 Vue.use(Table);
 Vue.use(Tag);
+Vue.use(Divider);
 Vue.use(PageHeader);
 Vue.use(Statistic);
 Vue.use(Row);
 Vue.use(Spin);
 Vue.use(Card);
 Vue.use(Col);
-Vue.use(Slider,);
+Vue.use(Slider);
+Vue.use(DatePicker);
+Vue.use(RangePicker);
+
 
 
 Vue.prototype.$message = message;

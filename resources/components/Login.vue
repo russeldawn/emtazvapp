@@ -95,7 +95,7 @@ export default {
 
 			// 	}
 			// });
-            this.$router.push('/dashboard');
+            this.$router.push({ name: 'dashboard' });
 		},
     }
 }

@@ -3,47 +3,147 @@
 
 		<a-row :gutter="[16, 16]">
 
-			<a-col :span="6">
+			<a-col :span="8">
 				<a-card hoverable :loading="loading">
-					<a-card-meta title="Card title" description="This is the description">
+
+					<span class="dashboard-icon">
 						<a-icon slot="icon" type="alert" />
+					</span>
+
+					<a-card-meta>
+						<template slot="title">
+							<span>
+								Card title
+							</span>
+						</template>
+
+						<template slot="description">
+							<span>
+								This is the description.
+							</span>
+						</template>
 					</a-card-meta>
+
 				</a-card>
 			</a-col>
 
-			<a-col :span="6">
+			<a-col :span="8">
 				<a-card hoverable :loading="loading">
-					<a-card-meta title="Card title" description="This is the description">
+
+					<span class="dashboard-icon">
 						<a-icon slot="icon" type="book" />
+					</span>
+
+					<a-card-meta>
+						<template slot="title">
+							<span>
+								Card title
+							</span>
+						</template>
+
+						<template slot="description">
+							<span>
+								This is the description.
+							</span>
+						</template>
 					</a-card-meta>
+
 				</a-card>
 			</a-col>
 
-			<a-col :span="6">
+			<a-col :span="8">
 				<a-card hoverable :loading="loading">
-					<a-card-meta title="Card title" description="This is the description">
+
+					<span class="dashboard-icon">
 						<a-icon slot="icon" type="calendar" />
+					</span>
+
+					<a-card-meta>
+						<template slot="title">
+							<span>
+								Card title
+							</span>
+						</template>
+
+						<template slot="description">
+							<span>
+								This is the description.
+							</span>
+						</template>
 					</a-card-meta>
+
 				</a-card>
 			</a-col>
 
-			<a-col :span="6">
+			<a-col :span="8">
 				<a-card hoverable :loading="loading">
-					<a-card-meta title="Card title" description="This is the description">
+
+					<span class="dashboard-icon">
 						<a-icon slot="icon" type="credit-card" />
+					</span>
+
+					<a-card-meta>
+						<template slot="title">
+							<span>
+								Card title
+							</span>
+						</template>
+
+						<template slot="description">
+							<span>
+								This is the description.
+							</span>
+						</template>
 					</a-card-meta>
+
 				</a-card>
 			</a-col>
 
-			<a-col :span="6">
+			<a-col :span="8">
 				<a-card hoverable :loading="loading">
-					<a-card-meta title="Card title" description="This is the description">
+
+					<span class="dashboard-icon">
 						<a-icon slot="icon" type="carry-out" />
-						<a-avatar
-							slot="avatar"
-							src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-						/>
+					</span>
+
+					<a-card-meta>
+						<template slot="title">
+							<span>
+								Card title
+							</span>
+						</template>
+
+						<template slot="description">
+							<span>
+								This is the description.
+							</span>
+						</template>
 					</a-card-meta>
+
+				</a-card>
+			</a-col>
+
+			<a-col :span="8">
+				<a-card hoverable :loading="loading">
+
+					<span class="dashboard-icon">
+						<a-icon slot="icon" type="carry-out" />
+					</span>
+
+					<a-card-meta>
+						<template slot="title">
+							<span>
+								Card title
+							</span>
+						</template>
+
+						<template slot="description">
+							<span>
+								This is the description.
+							</span>
+						</template>
+					</a-card-meta>
+
 				</a-card>
 			</a-col>
 
