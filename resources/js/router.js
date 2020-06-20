@@ -4,8 +4,8 @@ import Login from "../components/Login.vue";
 import Dashboard from '../components/Dashboard.vue';
 import MainPage from "../components/dashboard/Main.vue";
 import HomePage from '../components/dashboard/HomePage.vue'
-import CustomHeader from '../components/dashboard/CustomHeader.vue';
-import SideMenu from '../components/dashboard/SideMenu.vue';
+import Business from '../components/dashboard/Business.vue';
+import Payment from '../components/dashboard/Payment.vue';
 import UserList from "../components/dashboard/UserList.vue";
 import axios from "axios";
 import store from "./store";
@@ -59,22 +59,22 @@ let router = new VueRouter({
                 },
                 {
                     path: 'land-use',
-                    component: CustomHeader,
+                    component: Business,
                     name: 'land_use'
 				},
 				{
                     path: '/business/add',
-                    component: CustomHeader,
+                    component: Business,
                     name: 'add_business'
                 },
                 {
                     path: '/business/approve',
-                    component: CustomHeader,
+                    component: Business,
                     name: 'approve_business'
                 },
                 {
                     path: 'payment',
-                    component: SideMenu,
+                    component: Payment,
                     name: 'payment'
 				},
 

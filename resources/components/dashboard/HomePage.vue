@@ -53,54 +53,54 @@
 
     <ul>
       <li>
-        <router-link :to="{name:'home'}">Home</router-link>
+        <router-link :to="{name:'dashboard'}">Home</router-link>
       </li>
 
       <li>
-        <router-link :to="{name:'layout'}">Layout</router-link>
+        <router-link :to="{name:'dashboard'}">Layout</router-link>
       </li>
 
       <li>
-        <router-link :to="{name:'login'}">Login</router-link>
+        <router-link :to="{name:'dashboard'}">Login</router-link>
       </li>
       <li>
-        <router-link :to="{name:'signup'}">signup</router-link>
+        <router-link :to="{name:'dashboard'}">signup</router-link>
       </li>
       <li>
-        <router-link :to="{name:'main'}">Main Page</router-link>
+        <router-link :to="{name:'dashboard'}">Main Page</router-link>
       </li>
       <li>
-        <router-link to="/example">Example</router-link>
+        <router-link to="/dashboard">Example</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'sidemenu'}">SideMenu</router-link>
+        <router-link :to="{name: 'dashboard'}">SideMenu</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'header'}">CustomerHeader</router-link>
+        <router-link :to="{name: 'dashboard'}">CustomerHeader</router-link>
       </li>
       <li>
         <router-link :to="{name: 'dashboard'}">Dashboard</router-link>
       </li>
       <!-- <li>
-        <router-link :to="{name: 'dashboard2'}">Dashboard2</router-link>
+        <router-link :to="{name: 'dashboard'}">Dashboard2</router-link>
       </li> -->
       <li>
-        <router-link :to="{name: 'sidebar'}">Sidebar</router-link>
+        <router-link :to="{name: 'dashboard'}">Sidebar</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'submenu'}">Submenu</router-link>
+        <router-link :to="{name: 'dashboard'}">Submenu</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'submenu1'}">Submenu1</router-link>
+        <router-link :to="{name: 'dashboard'}">Submenu1</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'authorizedClients'}">authorizedClients</router-link>
+        <router-link :to="{name: 'dashboard'}">authorizedClients</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'personalAccessTokens'}">personalAccessTokens</router-link>
+        <router-link :to="{name: 'dashboard'}">personalAccessTokens</router-link>
       </li>
       <li>
-        <router-link :to="{name: 'clients'}">clients</router-link>
+        <router-link :to="{name: 'dashboard'}">clients</router-link>
       </li>
     </ul>
   </div>

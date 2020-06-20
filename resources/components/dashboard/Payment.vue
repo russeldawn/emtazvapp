@@ -15,7 +15,7 @@
           <a-icon type="pie-chart" />
           <span>{{item.title}}</span>
         </a-menu-item>
-        <sub-menu v-else :menu-info="item" :key="item.key"/>
+        <!-- <sub-menu v-else :menu-info="item" :key="item.key"/> -->
       </template>
     </a-menu>
   </div>
@@ -26,11 +26,11 @@
  * recommend SubMenu.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu.vue
  * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
  * */
-import SubMenu from './SubMenu'
+// import SubMenu from './SubMenu'
 export default {
-  components: {
-    'sub-menu': SubMenu,
-  },
+//   components: {
+//     'sub-menu': SubMenu,
+//   },
   data () {
     return {
       collapsed: false,

@@ -12,7 +12,7 @@
 				<template v-for="(item, index) in layoutMenu">
 
 					<a-menu-item :key="index" v-if="item.sub_route === undefined">
-						<!-- v-if="item.sub_route === undefined" -->
+
 						<router-link :to="{ name: item.route }">
 							<a-icon :type="item.icon" />
 							<span>

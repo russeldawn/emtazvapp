@@ -19,22 +19,12 @@ class AuthController extends Controller
 
         $user = User::where('userid', $request->username)->first();
 
-        // return $user;
         if (!$user) {
             return response()->json([
                 'message' => 'Wrong username or password',
                 'status' => 401
             ], 401);
         }
-
-        // $user_verified = $user->isverify;
-
-        // if (!$user_verified) {
-        //     return response()->json([
-        //         'message' => 'Activate your email first. Please check your email for the activation code.',
-        //         'status' => 401
-        //     ], 401);
-        // }
 
         // If a user with the email was found - check if the specified password
         // belongs to this user
