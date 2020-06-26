@@ -52,7 +52,7 @@
 		<!-- DASHBOARD LAYOUT CONTENT -->
 		<a-layout>
 			<!-- LAYOUT HEADER -->
-			<Header @toggleMenu="toggleMenu" />
+			<header @toggleMenu="toggleMenu" />
 
 			<!-- LAYOUT CONTENT -->
 			<a-layout-content

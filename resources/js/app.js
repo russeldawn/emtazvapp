@@ -43,10 +43,6 @@ import {
 } from 'ant-design-vue';
 
 import RangePicker from 'ant-design-vue/es/date-picker/RangePicker';
-// import 'ant-design-vue/lib/date-picker/style/css';
-
-// const RangePicker =
-// 	() => import(/* webpackChunkName: "range-picker" */ 'ant-design-vue/types/date-picker/range-picker');
 
 
 Vue.use(Form);

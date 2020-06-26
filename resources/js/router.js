@@ -2,11 +2,12 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Login from "../components/Login.vue";
 import Dashboard from '../components/Dashboard.vue';
-import MainPage from "../components/dashboard/Main.vue";
-import HomePage from '../components/dashboard/HomePage.vue'
-import Business from '../components/dashboard/Business.vue';
-import Payment from '../components/dashboard/Payment.vue';
-import UserList from "../components/dashboard/UserList.vue";
+import MainPage from "../components/pages/Main.vue";
+import HomePage from '../components/pages/HomePage.vue'
+import Business from '../components/pages/business/index.vue';
+import Payment from '../components/pages/payment/index.vue';
+import UserList from "../components/pages/user/index.vue";
+import Zoning from "../components/pages/zoning/index.vue";
 import axios from "axios";
 import store from "./store";
 
@@ -43,6 +44,11 @@ let router = new VueRouter({
                     name: 'users'
                 },
                 {
+                    path: '/zoning',
+                    component: Zoning,
+                    name: 'zonings'
+                },
+                {
                     path: '/zoning/add',
                     component: HomePage,
                     name: 'add_zoning'
@@ -60,8 +66,13 @@ let router = new VueRouter({
                 {
                     path: 'land-use',
                     component: Business,
-                    name: 'land_use'
+                    name: 'land_uses'
 				},
+				{
+                    path: '/business',
+                    component: Business,
+                    name: 'businesses'
+                },
 				{
                     path: '/business/add',
                     component: Business,
@@ -75,7 +86,7 @@ let router = new VueRouter({
                 {
                     path: 'payment',
                     component: Payment,
-                    name: 'payment'
+                    name: 'payments'
 				},
 
             ]
