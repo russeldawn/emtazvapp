@@ -14,10 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 Route::post('login', 'API\AuthController@login');
-Route::get('/user/list', 'UserListController@get_users_api');
+
+
+
+Route::group(['middleware' => 'auth:api'], function ()
+{
+	Route::namespace('API')->group( function ()
+	{
+		Route::get('me', 'AuthController@me');
+
+		Route::post('dashboard', 'DashboardController@show');
+
+	});
+
+	Route::get('user/list', 'UserListController@get_users_api');
+});

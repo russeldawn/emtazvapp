@@ -6,13 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Guzzle\CLient;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login']]);
-    }
 
     public function login(Request $request)
     {
@@ -35,16 +33,41 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken($user->emailaddress);
-        $expires_in = strtotime($token->token->expires_at);
+        $token = $user->createToken($user->userid);
+		$expires_at = strtotime($token->token->expires_at);
+
         // Format the final response in a desirable format
         return response()->json([
             'token_type' => 'Bearer',
-            'expires_in' => $expires_in,
+            'expires_at' => $expires_at,
             'token' => $token->accessToken,
-            // 'user' => $user,
             'status' => 200
         ]);
 
-    }
+	}
+
+    public function logout() {
+        $user = Auth::User();
+        $token = $user->token();
+        $token->revoke();
+
+        return response()->json(null, 204);
+	}
+
+
+	public function me()
+	{
+		$user = Auth::user();
+
+		$response = [
+			'status' => 200,
+			'data'   => [
+				'user' => $user
+			]
+		];
+
+        return response()->json($response);
+	}
+
+
 }

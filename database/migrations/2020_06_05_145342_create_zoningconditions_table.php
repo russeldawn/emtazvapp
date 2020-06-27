@@ -16,7 +16,7 @@ class CreateZoningconditionsTable extends Migration {
 		Schema::create('zoningconditions', function(Blueprint $table)
 		{
 			$table->integer('id')->primary('pk_zoningconditions');
-			$table->string('allowableproject')->nullable();
+			$table->text('allowableproject')->index()->nullable();
 			$table->string('class')->nullable();
 			$table->string('section')->nullable();
 		});

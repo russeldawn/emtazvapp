@@ -21,7 +21,7 @@
 
                 <a-form-item>
                     <a-input
-                    v-decorator="['userName',{ rules: [{ required: true, message: 'Please input your username!' }] }]"
+                    v-decorator="['username',{ rules: [{ required: true, message: 'Please input your username!' }] }]"
                     placeholder="Username"
                     >
                     <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
@@ -55,6 +55,7 @@
 <script>
 import videoInit from "../js/bideo";
 import initialize from "../js/main";
+import Auth from "../js/services/auth";
 
 export default {
     beforeCreate() {
@@ -74,28 +75,42 @@ export default {
     methods: {
 		handleSubmit(e) {
 			e.preventDefault();
-			// this.form.validateFields((err, values) => {
-			// 	console.log("Received values of form: ", values);
-			// 	console.log('err: ', err);
-			// 	console.log('!err: ', !err);
+			this.form.validateFields((err, values) => {
+				console.log("values from form: ", values);
+				console.log('err: ', err);
+				console.log('!err: ', !err);
 
-			// 	if (!err) {
-			// 		// window.location.href = '/dashboard';
-			// 		// axios.post('api/login', values)
-			// 		// .then(response => {
-			// 		// 	console.log('Reponse: ', response);
-			// 		// 	if (response.status === 200) {
-			// 		// 		router.push('/dashboard');
-			// 		// 	}
-			// 		// })
-			// 		// .catch(err => {
-			// 		// 	console.log('Error: ', err);
-            //         // });
+				if (!err) {
+					// window.location.href = '/dashboard';
+
+					Auth.login(values)
+					.then(response => {
+
+						if (response.status === 200) {
+
+							this.$store.commit('saveAuthentication', response.data)
+
+							return Auth.getUser();
+						}
+					})
+					.then( response => {
+
+						if (response.status === 200) {
+
+							this.$store.commit('saveAuthenticatedUser', response.data.data.user)
+
+							this.$router.push({ name: 'dashboard' });
+
+						}
+					})
+					.catch(err => {
+						console.log('Error: ', err);
+                    });
 
 
-			// 	}
-			// });
-            this.$router.push({ name: 'dashboard' });
+				}
+			});
+
 		},
     }
 }

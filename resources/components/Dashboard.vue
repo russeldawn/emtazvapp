@@ -99,6 +99,7 @@ import moment from 'moment';
 import Header from "./partials/Header";
 import Helper from '../js/services/helper';
 import Config from '../js/config/index';
+import Dashboard from "../js/services/dashboard";
 
 
 export default {
@@ -125,6 +126,19 @@ export default {
 
 		this.dashboardMenuActiveSwitch(this.$route.name);
 
+	},
+	created() {
+
+		let dateRange = [
+			moment().subtract(7, 'days').format('MMMM DD, YYYY'),
+			moment().format('MMMM DD, YYYY')
+		];
+
+		Dashboard.getCounters(dateRange)
+				.then(response => {
+					console.log('counters: ', response);
+
+				})
 	},
 	watch: {
         $route(to, from) {

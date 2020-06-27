@@ -109,6 +109,20 @@ Vue.config.productionTip = false;
 
 // Vue.component('loader', require('../components/Partials/Loader.vue').default);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component(
+//     'passport-clients',
+//     require('../components/passport/Clients.vue').default
+// );
+
+// Vue.component(
+//     'passport-authorized-clients',
+//     require('../components/passport/AuthorizedClients.vue').default
+// );
+
+// Vue.component(
+//     'passport-personal-access-tokens',
+//     require('../components/passport/PersonalAccessTokens.vue').default
+// );
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

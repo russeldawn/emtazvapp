@@ -8,38 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class UserListController extends Controller
 {
-    public function getUserList()
-    {
-        $users = User::all();
-        return view('app', ['data' => $users]);
-    }
 
-    public function getBrgyList()
-    {
-        $brgy = DB::table('barangay')->get();
-        // return response()->json($brgy);
-        return view('app', ['data' => $brgy]);
-    }
-
-    public function signup()
-    {
-        $logs = DB::table('smslogs')->get();
-        // return response()->json($logs);
-        return view('app', ['data' => $logs]);
-    }
-
-    public function formlist()
-    {
-        $list = DB::table('userinformation')->get();
-        // return response()->json($list);
-        return view('app', ['data' => $list]);
-    }
-
+	/**
+	 * Get All Users
+	 *
+	 * @param void
+	 * @return \Illuminate\Http\Response
+	 */
     public function get_users_api()
     {
         $users = User::all();
 
-        return $users;
+        return response()->json($users);
 
-    }
+	}
+
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Model\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
@@ -31,12 +34,59 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+		$all = $request->all();
+
+		$validator = Validator::make($request->all(), [
+			"start_date" => "required|date",
+			"end_date" => "required|date",
+		]);
+
+		if ($validator->fails()) {
+
+			$errors = $validator->errors();
+
+			return response()->json([
+				'status' => 400,
+				'errors' => $errors->all()
+			]);
+		}
+
+		$response = [];
+		$start_date = new Carbon($all['start_date']);
+		$end_date = new Carbon($all['end_date']);
+
+		$transactions = Transaction::query()
+									->selectRaw("count(case when status = 'New' then 1 end) as New")
+									->selectRaw("count(case when status = 'EndorsementInProgress' then 1 end) as EndorsementInProgress")
+									->selectRaw("count(case when status = 'Endorsed' then 1 end) as Endorsed")
+									->selectRaw("count(case when status = 'ApprovalInProgress' then 1 end) as ApprovalInProgress")
+									->selectRaw("count(case when status = 'Approved' then 1 end) as Approved")
+									->selectRaw("count(case when status = 'Denied' then 1 end) as Denied")
+									->whereBetween('dateapplied', [$start_date, $end_date])
+									->get();
+
+		if ($transactions) {
+			$response = [
+				'status' => 200,
+				'data'	 => [
+					'transactions' => $transactions[0]
+				]
+			];
+
+			return response()->json($response);
+		}
+
+		$response = [
+			'status'  => 400,
+			'message' => 'There were no records found.'
+		];
+
+		return response()->json($response);
     }
 
     /**

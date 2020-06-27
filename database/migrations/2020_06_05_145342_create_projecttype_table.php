@@ -16,8 +16,8 @@ class CreateProjecttypeTable extends Migration {
 		Schema::create('projecttype', function(Blueprint $table)
 		{
 			$table->integer('projecttypeid', true);
-			$table->string('projectname')->nullable();
-			$table->string('projecttype')->nullable();
+			$table->text('projectname')->index()->nullable();
+			$table->text('projecttype')->index()->nullable();
 		});
 	}
 

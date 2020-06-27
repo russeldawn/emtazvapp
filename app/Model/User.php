@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * The table associated with the model.
@@ -26,12 +26,12 @@ class User extends Authenticatable
      */
     protected $table = 'userlist';
 
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'userid';
+    // /**
+    //  * The primary key associated with the table.
+    //  *
+    //  * @var string
+    //  */
+    // protected $primaryKey = 'userid';
 
     /**
      * The attributes that are mass assignable.
@@ -48,15 +48,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'userpassword', 'remember_token',
-    ];
+        'userpassword', 'remember_token', 'created_at', 'updated_at'
+	];
 
-    /**
-     * The attributes that should be cast to native types.
+	/**
+     * Find the user instance for the given username.
      *
-     * @var array
+     * @param  string  $username
+     * @return \App\User
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function findForPassport($username)
+    {
+        return $this->where('userid', $username)->first();
+    }
+
 }

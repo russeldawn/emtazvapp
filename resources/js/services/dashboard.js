@@ -17,14 +17,15 @@ export default {
         });
 
     },
-    getUser() {
+	getCounters(data) {
         return axios({
             headers: {
                 Authorization: 'Bearer ' + store.state.token,
                 Accept: 'application/json',
             },
-            method: 'get',
-            url: '/api/me',
+            method: 'post',
+			url: '/api/dashboard',
+			data
         });
     }
 }
