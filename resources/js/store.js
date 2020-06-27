@@ -32,18 +32,14 @@ export default new Vuex.Store({
 		authenticated: false,
 		authentication: {},
 		user: null,
-		token: ''
+		token: '',
+		dashboardCounter: null
     },
 	getters: {
-		getAuthenticatedUser: (state) => {
-			return state.user;
-		},
-		getToken: (state) => {
-			return state.token;
-		},
-		isAuthenticated: (state) => {
-			return state.authenticated;
-		}
+		getToken: state => state.token,
+		isAuthenticated: state => state.authenticated,
+		getAuthenticatedUser: state =>  state.user,
+		getDashboardCounter: state =>  state.dashboardCounters,
     },
 	mutations: {
 		saveAuthentication (state, { token, expires_at }) {
@@ -53,12 +49,14 @@ export default new Vuex.Store({
 
             ls.set('access_token', token);
             ls.set('expires_at', expires_at);
-
-
         },
         saveAuthenticatedUser(state, data) {
-			state.me = data;
+			state.user = data;
 			ls.set('user', data);
+        },
+        saveDashboardCounter(state, data) {
+			state.dashboardCounter = data;
+			ls.set('dashboardCounter', data);
         }
     },
     actions: {

@@ -65,23 +65,9 @@
 			>
 
 
-				<a-page-header v-if="showPageHeader" :title="pageTitle" @back="() => $router.go(-1)">
+				<a-page-header v-show="showPageHeader" :title="pageTitle" @back="() => $router.go(-1)">
 					<template slot="Title">
 						{{ this.$route.name == 'main' ? 'Dashboard' : this.$route.name }}
-					</template>
-
-					<template slot="extra" v-if="showDashboardDateRange">
-
-						<a-range-picker
-							v-model="defaultDateRange"
-							:disabled-date="disabledDate"
-							:format="dateFormat"
-							:ranges="dateRanges"
-							@change="onChange"
-						>
-							<a-icon slot="suffixIcon" type="calendar" />
-						</a-range-picker>
-
 					</template>
 
 				</a-page-header>
@@ -95,11 +81,10 @@
 </template>
 
 <script>
-import moment from 'moment';
+
 import Header from "./partials/Header";
 import Helper from '../js/services/helper';
 import Config from '../js/config/index';
-import Dashboard from "../js/services/dashboard";
 
 
 export default {
@@ -107,17 +92,19 @@ export default {
 		Header
 	},
 	beforeMount() {
-		this.showPageHeader = true;
+
 
 		if (this.$route.name !== 'dashboard') {
 			this.showDashboardDateRange = false;
+			this.showPageHeader = true;
 		} else {
 			this.showDashboardDateRange = true;
+			this.showPageHeader = false;
 		}
 
 		// console.log('Config: ', Config.layoutMenu);
 
-		console.log('this.$route.name: ', this.$route.name);
+		// console.log('this.$route.name: ', this.$route.name);
 
 		this.layoutMenu = Config.layoutMenu;
 
@@ -127,28 +114,17 @@ export default {
 		this.dashboardMenuActiveSwitch(this.$route.name);
 
 	},
-	created() {
-
-		let dateRange = [
-			moment().subtract(7, 'days').format('MMMM DD, YYYY'),
-			moment().format('MMMM DD, YYYY')
-		];
-
-		Dashboard.getCounters(dateRange)
-				.then(response => {
-					console.log('counters: ', response);
-
-				})
-	},
 	watch: {
         $route(to, from) {
 
-			console.log('to.name: ', to.name === 'dashboard');
+			// console.log('to.name: ', to.name === 'dashboard');
 
 			if (to.name === 'dashboard') {
 				this.showDashboardDateRange = true;
+				this.showPageHeader = false;
 			} else {
-				this.showDashboardDateRange = false;
+				this.showDashboardDateRange = true;
+				this.showPageHeader = true;
 
 			}
 
@@ -158,21 +134,8 @@ export default {
     },
 	data() {
 		return {
-			dateFormat: 'LL',
-			defaultDateRange: [
-				moment().subtract(7, 'days'),
-				moment()
-			],
-			dateRanges: {
-				Today: [
-					moment(),
-					moment()
-				],
-				'This Month': [
-					moment(),
-					moment().endOf('month')
-				]
-			},
+
+
 			pageTitle: '',
 			defaultActiveMenu: ['1'],
 			defaultOpenKey: [],
@@ -185,15 +148,6 @@ export default {
 		};
 	},
 	methods: {
-		moment,
-		disabledDate(current) {
-			// Can not select days before today and today
-			return current > moment().endOf('day');
-		},
-		onChange(dates, dateStrings) {
-			console.log('From: ', dates[0], ', to: ', dates[1]);
-			console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
-		},
 		toggleMenu(val){
 			this.collapsed = val;
 		},
@@ -201,7 +155,7 @@ export default {
 
 			let current_menu = _.find(this.activateByRouteMenu, { route: activeMenuName});
 
-			console.log('current_menu: ', current_menu);
+			// console.log('current_menu: ', current_menu);
 
 
 			if (current_menu !== undefined) {
@@ -210,7 +164,7 @@ export default {
 				this.pageTitle = Helper.capitalizeFirstLetter(current_menu.label);
 			}
 
-			console.log('this.defaultActiveMenu: ', this.defaultActiveMenu);
+			// console.log('this.defaultActiveMenu: ', this.defaultActiveMenu);
 
 		},
 		iterateMenu(item, index) {

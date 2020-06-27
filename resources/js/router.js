@@ -124,48 +124,36 @@ router.beforeEach((to, from, next) => {
 	let sources = ls.getAllKeys();
 	let authUser = store.state.authenticated;
 	let requiresAuthRoute = to.matched.some(page => page.meta.requiresAuth);
-	let checkAuth = null;
 
-	console.log('authUser: ', authUser);
-	console.log('requiresAuthRoute: ', requiresAuthRoute);
-	console.log('sources: ', sources);
-	console.log('to: ', to);
-	console.log('from: ', from);
+	// console.log('authUser: ', authUser);
+	// console.log('requiresAuthRoute: ', requiresAuthRoute);
+	// console.log('sources: ', sources);
+	// console.log('to: ', to);
+	// console.log('from: ', from);
 
-	console.log("to.name !== 'login' && requiresAuthRoute && authUser == false: ", to.name !== 'login' && requiresAuthRoute && authUser == false);
-	if (ls.get('user') && ls.get('access_token') && ls.get('expires_at')) {
-
-		checkAuth = {
-			token: ls.get('access_token'),
-			refresh: ls.get('expires_at'),
-			user: ls.get('user'),
-		};
-
-		// store.commit('verifyAuthentication', checkAuth);
-
-	}
+	// console.log("to.name !== 'login' && requiresAuthRoute && authUser == false: ", to.name !== 'login' && requiresAuthRoute && authUser == false);
 
 
 	if (requiresAuthRoute && authUser) {
 		console.log('PATH 1!');
 
 		if (to.name !== 'login') {
-			console.log('PATH 2!');
+			console.log('PATH 1.1!');
 			next();
 		} else {
-			console.log('PATH 3!');
+			console.log('PATH 1.2!');
 			next({ name: 'dashboard' });
 		}
 
 	} else if(to.name !== 'login' && requiresAuthRoute && authUser == false) {
-		console.log('PATH 4!');
+		console.log('PATH 2!');
 		next({ name: 'login' });
 	} else if(to.name === 'login' && !requiresAuthRoute && authUser) {
-		console.log('PATH 5!');
+		console.log('PATH 3!');
 		next({ name: 'dashboard' });
 
 	} else {
-		console.log('PATH 6!');
+		console.log('PATH 4!');
 		next();
 	}
 

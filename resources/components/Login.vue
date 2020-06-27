@@ -86,6 +86,9 @@ export default {
 					Auth.login(values)
 					.then(response => {
 
+						console.log('Login response: ', response);
+
+
 						if (response.status === 200) {
 
 							this.$store.commit('saveAuthentication', response.data)

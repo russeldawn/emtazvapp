@@ -57,8 +57,9 @@ class DashboardController extends Controller
 		}
 
 		$response = [];
-		$start_date = new Carbon($all['start_date']);
-		$end_date = new Carbon($all['end_date']);
+		$start_date = $all['start_date'];
+		$end_date = $all['end_date'];
+		$date_range = [$start_date, $end_date];
 
 		$transactions = Transaction::query()
 									->selectRaw("count(case when status = 'New' then 1 end) as New")
@@ -67,7 +68,7 @@ class DashboardController extends Controller
 									->selectRaw("count(case when status = 'ApprovalInProgress' then 1 end) as ApprovalInProgress")
 									->selectRaw("count(case when status = 'Approved' then 1 end) as Approved")
 									->selectRaw("count(case when status = 'Denied' then 1 end) as Denied")
-									->whereBetween('dateapplied', [$start_date, $end_date])
+									->whereBetween('dateapplied', $date_range)
 									->get();
 
 		if ($transactions) {
