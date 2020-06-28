@@ -40,6 +40,8 @@ import {
 	Col,
 	Slider,
 	DatePicker,
+	Pagination,
+	Badge,
 } from 'ant-design-vue';
 
 import RangePicker from 'ant-design-vue/es/date-picker/RangePicker';
@@ -69,6 +71,8 @@ Vue.use(Col);
 Vue.use(Slider);
 Vue.use(DatePicker);
 Vue.use(RangePicker);
+Vue.use(Pagination);
+Vue.use(Badge);
 
 
 

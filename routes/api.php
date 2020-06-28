@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:api'], function ()
 
 		Route::post('dashboard', 'DashboardController@show');
 
+		Route::post('users', 'UserController@index');
 	});
 
-	Route::get('user/list', 'UserListController@get_users_api');
 });

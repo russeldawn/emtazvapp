@@ -29,7 +29,7 @@
 					<a-card hoverable :loading="loading">
 
 						<span class="dashboard-icon">
-							<a-icon slot="icon" type="alert" />
+							<a-icon slot="icon" type="file" />
 						</span>
 
 						<a-card-meta>
