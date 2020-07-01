@@ -65,12 +65,12 @@
 			>
 
 
-				<a-page-header v-show="showPageHeader" :title="pageTitle" @back="() => $router.go(-1)">
+				<!-- <a-page-header v-show="showPageHeader" :title="pageTitle" @back="() => $router.go(-1)">
 					<template slot="Title">
 						{{ this.$route.name == 'main' ? 'Dashboard' : this.$route.name }}
 					</template>
 
-				</a-page-header>
+				</a-page-header> -->
 
 				<router-view></router-view>
 

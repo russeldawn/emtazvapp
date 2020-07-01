@@ -7,7 +7,9 @@ import HomePage from '../components/pages/HomePage.vue'
 import Business from '../components/pages/business/index.vue';
 import Payment from '../components/pages/payment/index.vue';
 import UserList from "../components/pages/user/index.vue";
-import Zoning from "../components/pages/zoning/index.vue";
+import ZoningList from "../components/pages/zoning/index.vue";
+import AddZoning from "../components/pages/zoning/add.vue";
+import EditZoning from "../components/pages/zoning/add.vue";
 import ErrorPage from '../components/ErrorComponent.vue';
 import axios from "axios";
 import store from "./store";
@@ -48,26 +50,20 @@ let router = new VueRouter({
                 },
                 {
                     path: '/zoning',
-                    component: Zoning,
+                    component: ZoningList,
 					name: 'zonings',
 					meta: { requiresAuth: true }
                 },
                 {
                     path: '/zoning/add',
-                    component: HomePage,
+                    component: AddZoning,
 					name: 'add_zoning',
 					meta: { requiresAuth: true }
                 },
                 {
-                    path: '/zoning/endorse',
-                    component: HomePage,
-					name: 'endorse_zoning',
-					meta: { requiresAuth: true }
-                },
-                {
-                    path: '/zoning/approve',
-                    component: HomePage,
-					name: 'approve_zoning',
+                    path: '/zoning/edit',
+                    component: EditZoning,
+					name: 'edit_zoning',
 					meta: { requiresAuth: true }
                 },
                 {

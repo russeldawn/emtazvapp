@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from "../store";
 
 export default {
-	getUsers(payload) {
+	getTransactions(payload) {
 
 		let data = {
 			headers: {
@@ -10,8 +10,13 @@ export default {
 				Accept: 'application/json',
 			},
 			method: 'GET',
-			url: '/api/users' + payload.query,
+			url: '/api/transaction',
 		};
+
+
+		if (payload.query != '') {
+			data.url += payload.query;
+		}
 
         return axios(data);
     }

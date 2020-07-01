@@ -2,9 +2,20 @@
 	<div id="user-list-table">
 
 		<div>
-			<a-button class="editable-add-btn" @click="handleAdd">
-				Add
-			</a-button>
+			<a-page-header v-if="showPageHeader" :title="pageTitle" @back="() => $router.go(-1)">
+				<template slot="Title">
+					{{ this.$route.name == 'main' ? 'Dashboard' : this.$route.name }}
+				</template>
+
+				<template slot="extra">
+
+					<a-button type="primary" @click="handleAdd">
+						Add
+					</a-button>
+
+				</template>
+
+			</a-page-header>
 		</div>
 
 		<div>
@@ -29,17 +40,33 @@
 							v-show="value === true"
 							:color="colorTagging(key)"
 						>
-								<!-- {{ value.toUpperCase() }} -->
 							{{ key }}
 						</a-tag>
 					</template>
 				</span>
 
-				<span slot="action" slot-scope="text, record">
-					<a class="ant-dropdown-link">
-						Actions
-						<a-icon type="down" />
-					</a>
+				<span slot="action" slot-scope="record">
+					<a-dropdown>
+						<a class="ant-dropdown-link" @click="e => e.preventDefault()">
+							<a-icon type="ellipsis" />
+							<a-icon type="down" />
+						</a>
+
+						<a-menu slot="overlay" @click="onClick">
+							<a-menu-item key="1" @click="editRow(record)">
+								Edit
+							</a-menu-item>
+
+							<a-menu-item key="2" @click="viewRow(record)">
+								View
+							</a-menu-item>
+
+							<a-menu-item key="3" @click="editRow(record)">
+								Delete
+							</a-menu-item>
+						</a-menu>
+
+					</a-dropdown>
 				</span>
 			</a-table>
 
@@ -76,6 +103,7 @@
 
 <script>
 import User from "../../../js/services/users";
+import Helper from '../../../js/services/helper';
 
 const columns = [
 	{
@@ -127,8 +155,14 @@ const columns = [
 export default {
 	created() {
 
-		this.getUsers(this.currentPage, this.pageSize);
+		if (this.$route.name !== 'dashboard') {
+			this.showPageHeader = true;
+		} else {
+			this.showPageHeader = false;
+		}
 
+		this.getUsers(this.currentPage, this.pageSize);
+		this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name);
 	},
 	data() {
 		return {
@@ -139,7 +173,8 @@ export default {
 			currentPage: 1,
 			pageSizeOptions: ['5','10','15', '20', '30'],
 			searchInput: null,
-			modal2Visible: false
+			modal2Visible: false,
+			showPageHeader: false,
 		};
 	},
 	computed: {
@@ -168,6 +203,18 @@ export default {
 		},
 	},
 	methods: {
+		editRow(data) {
+			console.log('edit!!');
+		},
+		viewRow(data) {
+			console.log('view!!');
+		},
+		deleteRow(data) {
+			console.log('delete!!');
+		},
+		onClick({ key }) {
+			console.log(`Click on item ${key}`);
+		},
 		colorTagging(key) {
 
 			switch (key) {
@@ -227,13 +274,11 @@ export default {
 			}
 
 			if (pageSize != null) {
-				pageSize = pageSize;
-				payload.pageSize = pageSize;
+				payload.query += '&page_size=' + pageSize;
 			}
 
 			User.getUsers(payload)
 			.then(response => {
-				console.log('response: ', response);
 
 				if (response.status === 200) {
 

@@ -27,7 +27,8 @@ Route::group(['middleware' => 'auth:api'], function ()
 
 		Route::post('dashboard', 'DashboardController@show');
 
-		Route::post('users', 'UserController@index');
+		Route::apiResource('users', 'UserController');
+		Route::apiResource('transaction', 'TransactionController');
 	});
 
 });
