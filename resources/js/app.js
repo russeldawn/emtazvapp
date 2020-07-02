@@ -43,6 +43,9 @@ import {
 	Pagination,
 	Badge,
 	Dropdown,
+	Select,
+	Radio,
+	Upload,
 } from 'ant-design-vue';
 
 import RangePicker from 'ant-design-vue/es/date-picker/RangePicker';
@@ -75,6 +78,9 @@ Vue.use(RangePicker);
 Vue.use(Pagination);
 Vue.use(Badge);
 Vue.use(Dropdown);
+Vue.use(Select);
+Vue.use(Radio);
+Vue.use(Upload);
 
 
 

@@ -41,6 +41,7 @@ class TransactionController extends Controller
 		}
 
 		$transaction = Transaction::query()
+								->with('barangay')
 								->orderby('transactionid', 'asc')
 								->paginate($pageSize);
 

@@ -1,72 +1,382 @@
 <template>
-	<a-form-model
-		ref="ruleForm"
-		:model="form"
-		:rules="rules"
-		:label-col="labelCol"
-		:wrapper-col="wrapperCol"
-	>
-		<a-form-model-item ref="name" label="Activity name" prop="name">
-			<a-input
-				v-model="form.name"
-				@blur="
-					() => {
-						$refs.name.onFieldBlur();
-					}
-				"
-			/>
-		</a-form-model-item>
-		<a-form-model-item label="Activity zone" prop="region">
-			<a-select
-				v-model="form.region"
-				placeholder="please select your zone"
+	<div>
+		<div>
+			<a-page-header :title="pageTitle" @back="() => $router.go(-1)">
+				<template slot="Title">
+					{{ this.$route.name == 'main' ? 'Dashboard' : this.$route.name }}
+				</template>
+
+				<template slot="extra">
+
+					<a-button type="primary" @click="handleAdd">
+						Add
+					</a-button>
+
+					<a-button type="primary" @click="handleAdd">
+						Endorse
+					</a-button>
+
+					<a-button type="primary" @click="handleAdd">
+						Approve
+					</a-button>
+
+				</template>
+
+			</a-page-header>
+		</div>
+
+		<div>
+			<a-form
+				ref="ruleForm"
+				:model="form"
+				:rules="rules"
 			>
-				<a-select-option value="shanghai">Zone one</a-select-option>
-				<a-select-option value="beijing">Zone two</a-select-option>
-			</a-select>
-		</a-form-model-item>
-		<a-form-model-item label="Activity time" required prop="date1">
-			<a-date-picker
-				v-model="form.date1"
-				show-time
-				type="date"
-				placeholder="Pick a date"
-				style="width: 100%;"
-			/>
-		</a-form-model-item>
-		<a-form-model-item label="Instant delivery" prop="delivery">
-			<a-switch v-model="form.delivery" />
-		</a-form-model-item>
-		<a-form-model-item label="Activity type" prop="type">
-			<a-checkbox-group v-model="form.type">
-				<a-checkbox value="1" name="type">Online</a-checkbox>
-				<a-checkbox value="2" name="type">Promotion</a-checkbox>
-				<a-checkbox value="3" name="type">Offline</a-checkbox>
-			</a-checkbox-group>
-		</a-form-model-item>
-		<a-form-model-item label="Resources" prop="resource">
-			<a-radio-group v-model="form.resource">
-				<a-radio value="1">Sponsor</a-radio>
-				<a-radio value="2">Venue</a-radio>
-			</a-radio-group>
-		</a-form-model-item>
-		<a-form-model-item label="Activity form" prop="desc">
-			<a-input v-model="form.desc" type="textarea" />
-		</a-form-model-item>
-		<a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-			<a-button type="primary" @click="onSubmit">Create</a-button>
-			<a-button style="margin-left: 10px;" @click="resetForm"
-				>Reset</a-button
-			>
-		</a-form-model-item>
-	</a-form-model>
+
+				<a-row :gutter="18">
+					<a-col
+						class="gutter-row"
+						:span="6"
+						:style="{ display: 'block' }"
+					>
+						<a-form-item ref="name" label="Application Number: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item label="Date Applied" required prop="date1">
+							<a-date-picker
+								v-model="form.date1"
+								show-time
+								type="date"
+								placeholder="Pick a date"
+								style="width: 100%;"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Name of Applicant: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Company Name: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Name of Authorized Representative: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Address of Corporation: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+
+					</a-col>
+
+					<a-col
+						class="gutter-row"
+						:span="6"
+						:style="{ display: 'block' }"
+					>
+
+						<a-form-item ref="name" label="Property Identification Number(PIN): " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Property Class: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item label="Type of Project: " prop="region">
+							<a-select
+								v-model="form.region"
+								placeholder="please select your zone"
+							>
+								<a-select-option value="shanghai">Zone one</a-select-option>
+								<a-select-option value="beijing">Zone two</a-select-option>
+							</a-select>
+						</a-form-item>
+
+						<a-form-item label="Allowable Projects: " prop="region">
+							<a-select
+								v-model="form.region"
+								placeholder="please select your zone"
+							>
+								<a-select-option value="shanghai">Zone one</a-select-option>
+								<a-select-option value="beijing">Zone two</a-select-option>
+							</a-select>
+						</a-form-item>
+
+						<a-form-item label="Nature of Projects: " prop="region">
+							<a-select
+								v-model="form.region"
+								placeholder="please select your zone"
+							>
+								<a-select-option value="shanghai">Zone one</a-select-option>
+								<a-select-option value="beijing">Zone two</a-select-option>
+							</a-select>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Location of Project: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+
+					</a-col>
+
+					<a-col
+						class="gutter-row"
+						:span="6"
+						:style="{ display: 'block' }"
+					>
+
+						<a-form-item ref="name" label="Floor area of project occupied: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+								placeholder="(in square meters)"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Land area of project: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+								placeholder="(in square meters)"
+							/>
+						</a-form-item>
+
+						<a-form-item label="Right over land: " prop="region">
+							<a-select
+								v-model="form.region"
+								placeholder="please select your zone"
+							>
+								<a-select-option value="shanghai">Zone one</a-select-option>
+								<a-select-option value="beijing">Zone two</a-select-option>
+							</a-select>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Project Tenure: " prop="name">
+							<a-input-group>
+								<a-row :gutter="8">
+
+									<a-col :span="12">
+										<a-select default-value="Option1" style="width: 100%;">
+											<a-select-option value="Option1">
+											Option1
+											</a-select-option>
+											<a-select-option value="Option2">
+											Option2
+											</a-select-option>
+										</a-select>
+									</a-col>
+
+									<a-col :span="12">
+										<a-input default-value="" placeholder="Years"/>
+									</a-col>
+
+								</a-row>
+							</a-input-group>
+						</a-form-item>
+
+						<a-form-item label="Barangay of project site: " prop="region">
+							<a-select
+								v-model="form.region"
+								placeholder="please select your zone"
+							>
+								<a-select-option value="shanghai">Zone one</a-select-option>
+								<a-select-option value="beijing">Zone two</a-select-option>
+							</a-select>
+						</a-form-item>
+
+						<a-form-item label="Preferred mode of release of decision: " prop="region">
+							<a-select
+								v-model="form.region"
+								placeholder="please select your zone"
+							>
+								<a-select-option value="shanghai">Zone one</a-select-option>
+								<a-select-option value="beijing">Zone two</a-select-option>
+							</a-select>
+						</a-form-item>
+
+
+					</a-col>
+
+					<a-col
+						class="gutter-row"
+						:span="6"
+						:style="{ display: 'block' }"
+					>
+
+						<a-form-item ref="name" label="Project Cost/Capitalization" prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+								placeholder="in pesos, write in words and in this field"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Tax Declaration Number: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="LZBA Declaration Number: " prop="name">
+							<a-input
+								v-model="form.name"
+								@blur="
+									() => {
+										$refs.name.onFieldBlur();
+									}
+								"
+							/>
+						</a-form-item>
+
+						<a-form-item ref="name" label="Files: " prop="name">
+							<a-upload
+								action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+								:default-file-list="defaultFileList"
+							>
+								<a-button> <a-icon type="upload" /> Click to Upload </a-button>
+							</a-upload>
+						</a-form-item>
+
+
+					</a-col>
+				</a-row>
+
+				<a-row :gutter="18">
+					<a-col
+						class="gutter-row"
+						:span="24"
+						:style="{ display: 'block' }"
+						:offset="10"
+					>
+						<a-form-item>
+							<a-button type="primary" @click="onSubmit">
+								Save
+							</a-button>
+
+							<a-button style="margin-left: 10px;" @click="resetForm">
+								Cancel
+							</a-button>
+						</a-form-item>
+					</a-col>
+				</a-row>
+
+			</a-form>
+		</div>
+
+	</div>
+
 </template>
+
+
 <script>
+import Helper from '../../../js/services/helper';
+
 export default {
+	created() {
+		this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name);
+	},
 	data() {
 		return {
-			labelCol: { span: 4 },
-			wrapperCol: { span: 14 },
+			defaultFileList: [
+				{
+				uid: '1',
+				name: 'xxx.png',
+				status: 'done',
+				response: 'Server Error 500', // custom error message to show
+				url: 'http://www.baidu.com/xxx.png',
+				},
+				{
+				uid: '2',
+				name: 'yyy.png',
+				status: 'done',
+				url: 'http://www.baidu.com/yyy.png',
+				},
+				{
+				uid: '3',
+				name: 'zzz.png',
+				status: 'error',
+				response: 'Server Error 500', // custom error message to show
+				url: 'http://www.baidu.com/zzz.png',
+				},
+			],
+			labelCol: { span: 9 },
+			wrapperCol: { span: 18 },
 			other: "",
 			form: {
 				name: "",
@@ -143,7 +453,12 @@ export default {
 		},
 		resetForm() {
 			this.$refs.ruleForm.resetFields();
-		}
+		},
+		 handleChange({ file, fileList }) {
+			if (file.status !== 'uploading') {
+				console.log(file, fileList);
+			}
+		},
 	}
 };
 </script>

@@ -9,9 +9,40 @@
 
 				<template slot="extra">
 
+
 					<a-button type="primary" @click="handleAdd">
-						Add
+						New
 					</a-button>
+
+					<a-button type="primary" @click="handleAdd">
+						Filter
+					</a-button>
+
+					<!-- <a-input-group compact>
+						<a-select default-value="Option1">
+							<a-select-option value="Option1">
+								Transaction #
+							</a-select-option>
+
+							<a-select-option value="Option2">
+								Applicant
+							</a-select-option>
+
+							<a-select-option value="Option3">
+								Class
+							</a-select-option>
+
+							<a-select-option value="Option4">
+								Status
+							</a-select-option>
+						</a-select>
+
+						<a-input style="width: 50%" default-value="input content" />
+
+						<a-button type="primary" @click="handleAdd">
+							Search
+						</a-button>
+					</a-input-group> -->
 
 				</template>
 
@@ -25,25 +56,62 @@
 				:data-source="data"
 				:pagination="false"
 			>
-				<span slot="customTitle">User ID </span>
-				<a slot="userid" slot-scope="text">{{ text }}</a>
 
-				<span slot="customStatus" slot-scope="text, index">
-					<a-badge :status=" text === true ? 'success' : 'error'" />
-						{{ text === true ? 'Active' : 'Inactive' }}
-				</span>
+				<div
+					slot="filterDropdown"
+					slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
+					style="padding: 8px"
+				>
+					<a-input
+						v-ant-ref="c => (searchInput = c)"
+						:placeholder="`Search ${column.dataIndex}`"
+						:value="selectedKeys[0]"
+						style="width: 188px; margin-bottom: 8px; display: block;"
+						@change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
+						@pressEnter="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
+					/>
+					<a-button
+						type="primary"
+						icon="search"
+						size="small"
+						style="width: 90px; margin-right: 8px"
+						@click="() => handleSearch(selectedKeys, confirm, column.dataIndex)"
+					>
+						Search
+					</a-button>
+					<a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">
+						Reset
+					</a-button>
+				</div>
 
-				<span slot="tags" slot-scope="tags">
-					<template v-for="(value, key) in tags" >
-						<a-tag
-							:key="key"
-							v-show="value === true"
-							:color="colorTagging(key)"
+				<a-icon
+					slot="filterIcon"
+					slot-scope="filtered"
+					type="search"
+					:style="{ color: filtered ? '#108ee9' : undefined }"
+				/>
+
+				<template slot="customRender" slot-scope="text, record, index, column">
+					<span v-if="searchText && searchedColumn === column.dataIndex">
+						<template
+							v-for="(fragment, i) in text
+								.toString()
+								.split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
 						>
-							{{ key }}
-						</a-tag>
+							<mark
+								v-if="fragment.toLowerCase() === searchText.toLowerCase()"
+								:key="i"
+								class="highlight"
+							>
+								{{ fragment }}
+							</mark>
+							<template v-else>{{ fragment }}</template>
+						</template>
+					</span>
+					<template v-else>
+						{{ text }}
 					</template>
-				</span>
+				</template>
 
 				<span slot="action" slot-scope="record">
 					<a-dropdown>
@@ -104,12 +172,13 @@
 <script>
 import Transaction from "../../../js/services/transaction";
 import Helper from '../../../js/services/helper';
+import Moment from "moment";
 
 const columns = [
 	{
 		title: "Transaction #",
-		dataIndex: "transactionid",
-		key: "transactionid",
+		dataIndex: "transactionid.modified_id",
+		key: "transactionid.modified_id",
 		slots: { title: "customId" },
 	},
 	{
@@ -129,8 +198,8 @@ const columns = [
 	},
 	{
 		title: "Barangay",
-		dataIndex: "companyname",
-		key: "companyname",
+		dataIndex: "barangay.barangay_name",
+		key: "barangay.barangay_name",
 	},
 	{
 		title: "Status",
@@ -139,8 +208,8 @@ const columns = [
 	},
 	{
 		title: "POC",
-		dataIndex: "userid",
-		key: "userid",
+		dataIndex: "authorizedrep",
+		key: "authorizedrep",
 	},
 	{
 		title: "Action",
@@ -164,6 +233,36 @@ export default {
 		this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name);
 	},
 	data() {
+
+		// const custom = {
+		// 	scopedSlots: {
+		// 		filterDropdown: 'filterDropdown',
+		// 		filterIcon: 'filterIcon',
+		// 		customRender: 'customRender',
+		// 	},
+		// 	onFilter: (value, record) =>
+		// 		record.name
+		// 			.toString()
+		// 			.toLowerCase()
+		// 			.includes(value.toLowerCase()),
+		// 	onFilterDropdownVisibleChange: visible => {
+		// 		if (visible) {
+		// 			setTimeout(() => {
+		// 				this.searchInput.focus();
+		// 			}, 0);
+		// 		}
+		// 	},
+		// }
+
+		// columns.map(column => {
+
+		// 	if (column.key !== 'userid' && column.key !== 'action') {
+		// 		column.scopedSlots = custom.scopedSlots;
+		// 		column.onFilter = custom.onFilter;
+		// 		column.onFilterDropdownVisibleChange = custom.onFilterDropdownVisibleChange;
+		// 	}
+		// })
+
 		return {
 			data: [],
 			columns,
@@ -171,9 +270,11 @@ export default {
 			pageSize: 10,
 			currentPage: 1,
 			pageSizeOptions: ['5','10','15', '20', '30'],
-			searchInput: null,
 			modal2Visible: false,
 			showPageHeader: false,
+			searchText: '',
+			searchInput: null,
+			searchedColumn: '',
 		};
 	},
 	computed: {
@@ -184,8 +285,8 @@ export default {
 				},
 				getCheckboxProps: record => ({
 					props: {
-					disabled: record.name === 'Disabled User', // Column configuration not to be checked
-					name: record.name,
+						disabled: record.name === 'Disabled User', // Column configuration not to be checked
+						name: record.name,
 					},
 				}),
 			};
@@ -202,8 +303,22 @@ export default {
 		},
 	},
 	methods: {
+		onSearch(value) {
+			console.log(value);
+		},
+		// handleSearch(selectedKeys, confirm, dataIndex) {
+		// 	confirm();
+		// 	this.searchText = selectedKeys[0];
+		// 	this.searchedColumn = dataIndex;
+		// },
+
+		// handleReset(clearFilters) {
+		// 	clearFilters();
+		// 	this.searchText = '';
+		// },
 		editRow(data) {
 			console.log('edit!!');
+			console.log('edit data: ', data);
 			this.$router.push({ name: 'add_zoning' });
 		},
 		endorseRow(data) {
@@ -267,50 +382,35 @@ export default {
 			Transaction.getTransactions(payload)
 			.then(response => {
 
-				console.log('response: ', response);
-
-
 				if (response.status === 200) {
 
-					// let cloneData = Object.assign({}, response.data);
-					// this.data = [];
+					console.log('response: ', response);
 
-					// this.currentPage = cloneData.current_page;
+					let cloneData = Object.assign({}, response.data);
+					this.data = [];
 
-					// cloneData.data.map(user => {
+					this.currentPage = cloneData.current_page;
+					this.userTotal = cloneData.total
 
-					// 	let newData = {};
-					// 	let tags = {};
+					cloneData.data.map(transaction => {
 
-					// 	newData = {
-					// 		key: user.id,
-					// 		...user
-					// 	};
+						let new_data = {};
+						let str_to_date = null;
+						let date_applied = null;
 
-					// 	_.forEach(user, function(value, key) {
+						// str_to_date = Moment(transaction.dateapplied).format('DDMMYYYY');
+						// date_applied = Moment(transaction.dateapplied).format('L');
 
-					// 		switch (key) {
-					// 			case 'isadmin':
-					// 				tags[key] = value;
-					// 				break;
+						new_data = {
+							key: transaction.transactionid,
+							// trans_num: `MCT#-${str_to_date}-${transaction.transactionid}`,
+							// date_applied: date_applied,
+							...transaction
+						};
 
-					// 			case 'canreview':
-					// 				tags[key] = value;
-					// 				break;
+						this.data.push(new_data);
 
-					// 			case 'canapprove':
-					// 				tags[key] = value;
-					// 				break;
-					// 		}
-					// 	});
-
-					// 	newData.tags = tags;
-
-
-
-					// 	this.data.push(newData);
-
-					// });
+					});
 					// // this.data = response.data.data;
 					// this.userTotal = response.data.total;
 				}
@@ -327,6 +427,11 @@ export default {
 
 <style lang='scss' scoped>
 tr:last-child td {
-  padding-bottom: 0;
+	padding-bottom: 0;
+}
+
+.highlight {
+	background-color: rgb(255, 192, 105);
+	padding: 0px;
 }
 </style>

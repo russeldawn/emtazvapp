@@ -44,7 +44,9 @@ class UserController extends Controller
 		}
 
 
-		$users = User::paginate($pageSize);
+		$users = User::query()
+					->orderby('id', 'asc')
+					->paginate($pageSize);
 
 		return response()->json($users);
 
