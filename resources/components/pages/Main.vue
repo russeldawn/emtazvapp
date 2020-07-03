@@ -177,7 +177,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import moment from 'moment';
 import Helper from "../../js/services/helper";
 import Dashboard from "../../js/services/dashboard";

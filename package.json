@@ -22,7 +22,8 @@
         "sass": "^1.26.9",
         "sass-loader": "^8.0.2",
         "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "vue-template-compiler": "^2.6.10",
+        "websocket-extensions": "^0.1.4"
     },
     "dependencies": {
         "ant-design-vue": "^1.6.2",
@@ -32,7 +33,6 @@
         "secure-ls": "^1.2.6",
         "vue-router": "^3.3.4",
         "vuex": "^3.5.1",
-        "vuex-persistedstate": "^3.0.1",
-        "websocket-driver": "^0.7.4"
+        "vuex-persistedstate": "^3.0.1"
     }
 }

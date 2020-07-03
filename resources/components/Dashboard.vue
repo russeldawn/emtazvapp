@@ -2,7 +2,7 @@
 	<a-layout id="dashboard-layout">
 
 		<!-- LAYOUT SIDE MENU -->
-		<a-layout-sider collapsible v-model="collapsed">
+		<a-layout-sider collapsible v-model="collapsed" :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }">
 			<div class="logo">
 				<!-- <span>ZVAP</span> -->
 			</div>
@@ -55,14 +55,7 @@
 			<header @toggleMenu="toggleMenu" />
 
 			<!-- LAYOUT CONTENT -->
-			<a-layout-content
-				:style="{
-					margin: '24px 16px',
-					padding: '24px',
-					background: '#fff',
-					minHeight: '280px'
-				}"
-			>
+			<a-layout-content id="layout-content">
 
 
 				<!-- <a-page-header v-show="showPageHeader" :title="pageTitle" @back="() => $router.go(-1)">
@@ -207,5 +200,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+#layout-content.ant-layout-content {
+}
 </style>

@@ -46,6 +46,7 @@ import {
 	Select,
 	Radio,
 	Upload,
+	Tabs,
 } from 'ant-design-vue';
 
 import RangePicker from 'ant-design-vue/es/date-picker/RangePicker';
@@ -81,6 +82,7 @@ Vue.use(Dropdown);
 Vue.use(Select);
 Vue.use(Radio);
 Vue.use(Upload);
+Vue.use(Tabs);
 
 
 
