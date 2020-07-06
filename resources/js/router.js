@@ -9,7 +9,7 @@ import Payment from '../components/pages/payment/index.vue';
 import UserList from "../components/pages/user/index.vue";
 import ZoningList from "../components/pages/zoning/index.vue";
 import AddZoning from "../components/pages/zoning/add.vue";
-import EditZoning from "../components/pages/zoning/add.vue";
+import EditZoning from "../components/pages/zoning/edit.vue";
 import ErrorPage from '../components/ErrorComponent.vue';
 import axios from "axios";
 import store from "./store";

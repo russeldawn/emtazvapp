@@ -319,7 +319,8 @@ export default {
 		editRow(data) {
 			console.log('edit!!');
 			console.log('edit data: ', data);
-			this.$router.push({ name: 'add_zoning' });
+			this.$router.push({ name: 'edit_zoning' });
+
 		},
 		endorseRow(data) {
 			console.log('view!!');
