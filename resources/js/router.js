@@ -7,9 +7,13 @@ import HomePage from '../components/pages/HomePage.vue'
 import Business from '../components/pages/business/index.vue';
 import Payment from '../components/pages/payment/index.vue';
 import UserList from "../components/pages/user/index.vue";
-import ZoningList from "../components/pages/zoning/index.vue";
-import AddZoning from "../components/pages/zoning/add.vue";
-import EditZoning from "../components/pages/zoning/edit.vue";
+
+// Zoning Routes
+import ZoningIndex from "../components/pages/zoning/index.vue";
+import ZoningList from "../components/pages/zoning/list.vue";
+import ZoningAdd from "../components/pages/zoning/add.vue";
+import ZoningEdit from "../components/pages/zoning/edit.vue";
+
 import ErrorPage from '../components/ErrorComponent.vue';
 import axios from "axios";
 import store from "./store";
@@ -50,22 +54,32 @@ let router = new VueRouter({
                 },
                 {
                     path: '/zoning',
-                    component: ZoningList,
+                    component: ZoningIndex,
 					name: 'zonings',
-					meta: { requiresAuth: true }
+					meta: { requiresAuth: true },
+					children: [
+						{
+							path: 'list',
+							component: ZoningList,
+							name: 'list_zoning',
+							meta: { requiresAuth: true }
+						},
+						{
+							path: 'add',
+							component: ZoningAdd,
+							name: 'add_zoning',
+							meta: { requiresAuth: true }
+						},
+						{
+							path: 'edit/:id',
+							component: ZoningEdit,
+							name: 'edit_zoning',
+							meta: { requiresAuth: true }
+						},
+
+					]
                 },
-                {
-                    path: '/zoning/add',
-                    component: AddZoning,
-					name: 'add_zoning',
-					meta: { requiresAuth: true }
-                },
-                {
-                    path: '/zoning/edit',
-                    component: EditZoning,
-					name: 'edit_zoning',
-					meta: { requiresAuth: true }
-                },
+
                 {
                     path: 'land-use',
                     component: Business,

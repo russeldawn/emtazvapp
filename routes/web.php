@@ -19,10 +19,9 @@ Route::view('dashboard', 'layouts/app')->name('users');
 Route::view('users', 'layouts/app')->name('users');
 
 Route::prefix('zoning')->group(function () {
-	Route::view('/', 'layouts/app')->name('zoning_list');
-	Route::view('/add', 'layouts/app')->name('add_zoning');
-	Route::view('/edit', 'layouts/app')->name('edit_zoning');
-    // Route::view('add', 'layouts/app')->name('add_zoning');
+	Route::view('list', 'layouts/app')->name('zoning_list');
+	Route::view('add', 'layouts/app')->name('add_zoning');
+	Route::view('edit/{id}', 'layouts/app')->name('edit_zoning');
     // Route::view('endorse', 'layouts/app')->name('endorse_zoning');
     // Route::view('approve', 'layouts/app')->name('approve_zoning');
 });

@@ -13,7 +13,7 @@ export default {
 		{
 			label: "Zoning",
 			icon: "environment",
-			route: "zonings"
+			route: "list_zoning"
 		},
 		{
 			label: "Land Use",
