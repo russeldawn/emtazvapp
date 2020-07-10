@@ -75,7 +75,7 @@
 
 <script>
 
-import Header from "./partials/Header";
+import Header from "./partials/Header.vue";
 import Helper from '../js/services/helper';
 import Config from '../js/config/index';
 
