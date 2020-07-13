@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-		"postinstall": "npm run prod",
+        "postinstall": "npm run dev",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
@@ -12,6 +12,7 @@
     },
     "devDependencies": {
         "axios": "^0.19",
+        "babel-loader": "^8.1.0",
         "babel-plugin-import": "^1.13.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
@@ -23,6 +24,7 @@
         "sass": "^1.26.10",
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
+        "vue-loader": "^15.9.3",
         "vue-template-compiler": "^2.6.10",
         "websocket-extensions": "^0.1.4"
     },

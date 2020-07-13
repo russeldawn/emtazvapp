@@ -16,9 +16,9 @@
 
     <!-- Styles -->
 	{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
-	<link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css">
-	<link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
+	<link rel="stylesheet" href="{{ secure_asset('css/app.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ secure_asset('css/vue-style.css') }}" type="text/css">
+	<link rel="shortcut icon" href="{{secure_asset('favicon.ico')}}" type="image/x-icon">
 
     <!-- Scripts -->
     <script type="text/javascript">
@@ -43,11 +43,11 @@
 
 
     <!-- Scripts -->
-    <script type="text/javascript" src="{{ asset('/js/manifest.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('/js/vendor.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('js/bideo.js') }}" defer></script>
-	<script type="text/javascript" src="{{ asset('js/main.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('/js/manifest.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('/js/vendor.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('js/bideo.js') }}" defer></script>
+	<script type="text/javascript" src="{{ secure_asset('js/main.js') }}" defer></script>
 	<script type="text/javascript" src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>
