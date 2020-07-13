@@ -75,7 +75,7 @@
 
 <script>
 
-import Header from "./partials/Header.vue";
+import Header from './partials/Header';
 import Helper from '../js/services/helper';
 import Config from '../js/config/index';
 
@@ -201,6 +201,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#layout-content.ant-layout-content {
-}
+// #layout-content.ant-layout-content {
+// }
 </style>
