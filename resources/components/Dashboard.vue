@@ -75,7 +75,7 @@
 
 <script>
 
-import DashboardHeader from './partials/dashboardheader.vue';
+import DashboardHeader from './partial/dashboardheader.vue';
 import Helper from '../js/services/helper';
 import Config from '../js/config/index';
 
