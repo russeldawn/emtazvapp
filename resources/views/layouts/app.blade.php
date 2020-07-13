@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -11,10 +12,13 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+	<link rel="stylesheet" href="{{ secure_asset('css/app.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ secure_asset('css/vue-style.css') }}" type="text/css">
+	<link rel="shortcut icon" href="{{secure_asset('favicon.ico')}}" type="image/x-icon">
 
     <!-- Scripts -->
     <script type="text/javascript">
@@ -22,7 +26,7 @@
     </script>
 
     <script src="https://use.typekit.net/nlq1kdt.js"></script>
-
+	{{-- <script type="text/javascript" src="{{ asset('js/typekit.js') }}"></script> --}}
     <script>
         try {
             Typekit.load({
@@ -34,17 +38,16 @@
 </head>
 <body>
     <div id="app">
-        <div>
-            this is vue.js app
-        </div>
+
     </div>
 
 
     <!-- Scripts -->
-    <script type="text/javascript" src="{{ asset('/js/manifest.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('/js/vendor.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('js/bideo.js') }}" defer></script>
-	<script type="text/javascript" src="{{ asset('js/main.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('/js/manifest.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('/js/vendor.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ secure_asset('js/bideo.js') }}" defer></script>
+	<script type="text/javascript" src="{{ secure_asset('js/main.js') }}" defer></script>
+	<script type="text/javascript" src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

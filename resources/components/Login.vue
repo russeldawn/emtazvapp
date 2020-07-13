@@ -8,8 +8,8 @@
 
         <div id="login_content">
             <div id="head">
-                <h1>ZVAPP</h1>
-                <!-- <p class="sub_head">Mandaue ZVAPP Application</p> -->
+                <h1>EMTA SERVICES</h1>
+                <p class="sub_head">Mandaue ZVAPP Application</p>
                 <!-- <p class="info">(Hold on! The video might take a while to load.)</p> -->
             </div>
             <a-form
@@ -21,8 +21,8 @@
 
                 <a-form-item>
                     <a-input
-                    v-decorator="['email',{ rules: [{ required: true, message: 'Please input your email!' }] }]"
-                    placeholder="Email"
+                    v-decorator="['username',{ rules: [{ required: true, message: 'Please input your username!' }] }]"
+                    placeholder="Username"
                     >
                     <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
                     </a-input>
@@ -53,10 +53,20 @@
 </template>
 
 <script>
+import videoInit from "../js/bideo";
+import initialize from "../js/main";
+import Auth from "../js/services/auth";
 
 export default {
-	beforeCreate() {
-		this.form = this.$form.createForm(this);
+    beforeCreate() {
+        this.form = this.$form.createForm(this);
+    },
+	mounted() {
+
+        videoInit();
+		initialize();
+
+
 	},
 	data() {
 		return {
@@ -65,37 +75,70 @@ export default {
     methods: {
 		handleSubmit(e) {
 			e.preventDefault();
-			// this.form.validateFields((err, values) => {
-			// 	console.log("Received values of form: ", values);
-			// 	console.log('err: ', err);
-			// 	console.log('!err: ', !err);
+			this.form.validateFields((err, values) => {
+				console.log("values from form: ", values);
+				console.log('err: ', err);
+				console.log('!err: ', !err);
 
-			// 	if (!err) {
-			// 		// window.location.href = '/dashboard';
-			// 		// axios.post('api/login', values)
-			// 		// .then(response => {
-			// 		// 	console.log('Reponse: ', response);
-			// 		// 	if (response.status === 200) {
-			// 		// 		router.push('/dashboard');
-			// 		// 	}
-			// 		// })
-			// 		// .catch(err => {
-			// 		// 	console.log('Error: ', err);
-            //         // });
+				if (!err) {
+					// window.location.href = '/dashboard';
+
+					Auth.login(values)
+					.then(response => {
+
+						console.log('Login response: ', response);
 
 
-			// 	}
-			// });
-            this.$router.push('/dashboard');
+						if (response.status === 200) {
+
+							this.$store.commit('saveAuthentication', response.data)
+
+							return Auth.getUser();
+						}
+					})
+					.then( response => {
+
+						if (response.status === 200) {
+
+							this.$store.commit('saveAuthenticatedUser', response.data.data.user)
+
+							this.$router.push({ name: 'dashboard' });
+
+						}
+					})
+					.catch(err => {
+						console.log('Error: ', err);
+                    });
+
+
+				}
+			});
+
 		},
-        // onChange(picked) {
-		// 	console.log('picked date: ', picked);
-
-		// },
     }
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Demo page specific styles */
+
+body {
+    text-align: center;
+	font-family: 'proxima-nova', Helvetica;
+}
+
 
 </style>

@@ -1,0 +1,30 @@
+#layout-content.ant-layout-content {
+
+	margin-top: 24px;
+	margin-bottom: 24px;
+	margin-right: 16px;
+	margin-left: 218px;
+	padding: 24px;
+	background: #fff;
+	min-height: 94.8vh;
+	height: 100%;
+	overflow: initial;
+
+	#components-grid {
+
+		.ant-card-body {
+
+			.dashboard-icon {
+				float: left;
+				padding-right: 16px;
+				font-size: xx-large;
+				line-height: 0;
+			}
+		}
+	}
+
+	ul.ant-pagination {
+		float: right;
+		padding-top: 25px;
+	}
+}

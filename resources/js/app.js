@@ -14,7 +14,6 @@ import store from './store';
 import App from '../components/App.vue';
 
 
-
 import {
     Form,
     message,
@@ -29,8 +28,28 @@ import {
     List,
     Switch,
     Skeleton,
-    Avatar,
+	Avatar,
+	Table,
+	Tag,
+	Divider,
+	PageHeader,
+	Statistic,
+	Row,
+	Spin,
+	Card,
+	Col,
+	Slider,
+	DatePicker,
+	Pagination,
+	Badge,
+	Dropdown,
+	Select,
+	Radio,
+	Upload,
+	Tabs,
 } from 'ant-design-vue';
+
+import RangePicker from 'ant-design-vue/es/date-picker/RangePicker';
 
 
 Vue.use(Form);
@@ -45,6 +64,27 @@ Vue.use(List);
 Vue.use(Switch);
 Vue.use(Skeleton);
 Vue.use(Avatar);
+Vue.use(Table);
+Vue.use(Tag);
+Vue.use(Divider);
+Vue.use(PageHeader);
+Vue.use(Statistic);
+Vue.use(Row);
+Vue.use(Spin);
+Vue.use(Card);
+Vue.use(Col);
+Vue.use(Slider);
+Vue.use(DatePicker);
+Vue.use(RangePicker);
+Vue.use(Pagination);
+Vue.use(Badge);
+Vue.use(Dropdown);
+Vue.use(Select);
+Vue.use(Radio);
+Vue.use(Upload);
+Vue.use(Tabs);
+
+
 
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
@@ -55,7 +95,9 @@ Vue.prototype.$warning = Modal.warning;
 Vue.prototype.$confirm = Modal.confirm;
 Vue.prototype.$_ = _;
 
-import 'ant-design-vue/dist/antd.css';
+Vue.config.productionTip = false;
+
+// import 'ant-design-vue/dist/antd.css';
 
 /**
  * The following block of code may be used to automatically register your
@@ -79,7 +121,22 @@ import 'ant-design-vue/dist/antd.css';
 // });
 
 
+// Vue.component('loader', require('../components/Partials/Loader.vue').default);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component(
+//     'passport-clients',
+//     require('../components/passport/Clients.vue').default
+// );
+
+// Vue.component(
+//     'passport-authorized-clients',
+//     require('../components/passport/AuthorizedClients.vue').default
+// );
+
+// Vue.component(
+//     'passport-personal-access-tokens',
+//     require('../components/passport/PersonalAccessTokens.vue').default
+// );
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
