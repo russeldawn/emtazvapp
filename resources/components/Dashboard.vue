@@ -52,7 +52,7 @@
 		<!-- DASHBOARD LAYOUT CONTENT -->
 		<a-layout>
 			<!-- LAYOUT HEADER -->
-			<header @toggleMenu="toggleMenu" />
+			<dashboard-header @toggleMenu="toggleMenu" />
 
 			<!-- LAYOUT CONTENT -->
 			<a-layout-content id="layout-content">
@@ -75,14 +75,14 @@
 
 <script>
 
-import Header from './partials/Header';
+import DashboardHeader from './partials/dashboardheader.vue';
 import Helper from '../js/services/helper';
 import Config from '../js/config/index';
 
 
 export default {
 	components: {
-		Header
+		DashboardHeader
 	},
 	beforeMount() {
 
