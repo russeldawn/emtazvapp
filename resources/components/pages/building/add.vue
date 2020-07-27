@@ -56,6 +56,7 @@ import Helper from '../../../js/services/helper';
 import Condition from "./partial/condition.vue";
 import FormFields  from "./partial/FormFields.vue";
 
+
 export default {
 	components: {
 		Condition,
@@ -63,6 +64,8 @@ export default {
 	},
 	created() {
 		this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name);
+
+
 	},
 	data() {
 		return {
@@ -75,7 +78,8 @@ export default {
 
 			this.tabIndex = tabIndex;
 
-		}
+		},
+
 	}
 };
 </script>

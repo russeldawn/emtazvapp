@@ -28,6 +28,13 @@ class Transaction extends Model
      */
 	protected $primaryKey = 'transactionid';
 
+	/**
+     * The storage format of the model's date columns.
+     *
+     * @var string
+     */
+    protected $dateFormat = 'Y-m-d';
+
 
 	/**
      * The attributes that are mass assignable.

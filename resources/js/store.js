@@ -57,7 +57,17 @@ export default new Vuex.Store({
         saveDashboardCounter(state, data) {
 			state.dashboardCounter = data;
 			ls.set('dashboardCounter', data);
-        }
+		},
+		logout (state) {
+            state.authenticated = false;
+            state.authentication = {};
+            state.user = null;
+            state.token = '';
+            state.dashboardCounter = null;
+
+            ls.remove('vuex');
+            ls.removeAll();
+        },
     },
     actions: {
 

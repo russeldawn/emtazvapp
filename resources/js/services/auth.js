@@ -10,8 +10,11 @@ export default {
         });
     },
     logout() {
-
-        return axios({
+		return axios({
+			headers: {
+                Authorization: 'Bearer ' + store.state.token,
+                Accept: 'application/json',
+            },
             method: 'get',
             url: '/api/logout'
         });

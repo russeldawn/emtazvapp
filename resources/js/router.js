@@ -9,10 +9,10 @@ import Payment from '../components/pages/payment/index.vue';
 import UserList from "../components/pages/user/index.vue";
 
 // Zoning Routes
-import ZoningIndex from "../components/pages/zoning/index.vue";
-import ZoningList from "../components/pages/zoning/list.vue";
-import ZoningAdd from "../components/pages/zoning/add.vue";
-import ZoningEdit from "../components/pages/zoning/edit.vue";
+import BuildingPermitIndex from "../components/pages/building/index.vue";
+import BuildingPermitList from "../components/pages/building/list.vue";
+import BuildingPermitAdd from "../components/pages/building/add.vue";
+import BuildingPermitEdit from "../components/pages/building/edit.vue";
 
 import ErrorPage from '../components/ErrorComponent.vue';
 import axios from "axios";
@@ -53,27 +53,27 @@ let router = new VueRouter({
 					meta: { requiresAuth: true }
                 },
                 {
-                    path: '/zoning',
-                    component: ZoningIndex,
-					name: 'zonings',
+                    path: '/building_permit',
+                    component: BuildingPermitIndex,
+					name: 'building_permits',
 					meta: { requiresAuth: true },
 					children: [
 						{
 							path: 'list',
-							component: ZoningList,
-							name: 'list_zoning',
+							component: BuildingPermitList,
+							name: 'list_building_permit',
 							meta: { requiresAuth: true }
 						},
 						{
 							path: 'add',
-							component: ZoningAdd,
-							name: 'add_zoning',
+							component: BuildingPermitAdd,
+							name: 'add_building_permit',
 							meta: { requiresAuth: true }
 						},
 						{
 							path: 'edit/:id',
-							component: ZoningEdit,
-							name: 'edit_zoning',
+							component: BuildingPermitEdit,
+							name: 'edit_building_permit',
 							meta: { requiresAuth: true }
 						},
 
@@ -135,9 +135,9 @@ router.beforeEach((to, from, next) => {
 	let authUser = store.state.authenticated;
 	let requiresAuthRoute = to.matched.some(page => page.meta.requiresAuth);
 
-	// console.log('authUser: ', authUser);
-	// console.log('requiresAuthRoute: ', requiresAuthRoute);
-	// console.log('sources: ', sources);
+	console.log('authUser: ', authUser);
+	console.log('requiresAuthRoute: ', requiresAuthRoute);
+	console.log('sources: ', sources);
 	// console.log('to: ', to);
 	// console.log('from: ', from);
 

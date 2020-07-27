@@ -5,7 +5,6 @@
 </template>
 
 <script>
-console.log('this is the zoning index!!');
 
 export default {
 	data() {

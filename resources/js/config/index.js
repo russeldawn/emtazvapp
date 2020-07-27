@@ -11,12 +11,12 @@ export default {
 			route: "users"
 		},
 		{
-			label: "Zoning",
+			label: "Building Permit",
 			icon: "environment",
-			route: "list_zoning"
+			route: "list_building_permit"
 		},
 		{
-			label: "Land Use",
+			label: "Zoning/Land Use",
 			icon: "compass",
 			route: "land_uses"
 		},

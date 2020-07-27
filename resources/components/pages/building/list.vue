@@ -222,7 +222,7 @@ const columns = [
 
 export default {
 	created() {
-		console.log('this is the zoning list!!');
+		console.log('this is the building list!!');
 
 
 		if (this.$route.name !== 'dashboard') {
@@ -235,35 +235,6 @@ export default {
 		this.pageTitle = Helper.capitalizeFirstLetter(this.$route.name);
 	},
 	data() {
-
-		// const custom = {
-		// 	scopedSlots: {
-		// 		filterDropdown: 'filterDropdown',
-		// 		filterIcon: 'filterIcon',
-		// 		customRender: 'customRender',
-		// 	},
-		// 	onFilter: (value, record) =>
-		// 		record.name
-		// 			.toString()
-		// 			.toLowerCase()
-		// 			.includes(value.toLowerCase()),
-		// 	onFilterDropdownVisibleChange: visible => {
-		// 		if (visible) {
-		// 			setTimeout(() => {
-		// 				this.searchInput.focus();
-		// 			}, 0);
-		// 		}
-		// 	},
-		// }
-
-		// columns.map(column => {
-
-		// 	if (column.key !== 'userid' && column.key !== 'action') {
-		// 		column.scopedSlots = custom.scopedSlots;
-		// 		column.onFilter = custom.onFilter;
-		// 		column.onFilterDropdownVisibleChange = custom.onFilterDropdownVisibleChange;
-		// 	}
-		// })
 
 		return {
 			data: [],
@@ -308,20 +279,10 @@ export default {
 		onSearch(value) {
 			console.log(value);
 		},
-		// handleSearch(selectedKeys, confirm, dataIndex) {
-		// 	confirm();
-		// 	this.searchText = selectedKeys[0];
-		// 	this.searchedColumn = dataIndex;
-		// },
-
-		// handleReset(clearFilters) {
-		// 	clearFilters();
-		// 	this.searchText = '';
-		// },
 		editRow(data) {
 			console.log('edit!!');
 			console.log('edit data: ', data);
-			this.$router.push({ name: 'edit_zoning', params: { id: data.transactionid.id } });
+			this.$router.push({ name: 'edit_building_permit', params: { id: data.transactionid.id } });
 
 		},
 		endorseRow(data) {
@@ -348,7 +309,7 @@ export default {
 			}
 		},
 		handleAdd() {
-			this.$router.push({ name: 'add_zoning' });
+			this.$router.push({ name: 'add_building_permit' });
 
 		},
 		showTotal(total, range) {

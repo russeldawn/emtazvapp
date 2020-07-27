@@ -48,11 +48,22 @@ class AuthController extends Controller
 
     public function logout() {
         $user = Auth::User();
-        $token = $user->token();
-        $token->revoke();
+        $tokenId = $user->token()->id;
 
-        return response()->json(null, 204);
-	}
+        $tokenRepository = app('Laravel\Passport\TokenRepository');
+        $refreshTokenRepository = app('Laravel\Passport\RefreshTokenRepository');
+
+        // Revoke an access token...
+        $tokenRepository->revokeAccessToken($tokenId);
+
+        // Revoke all of the token's refresh tokens...
+        $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($tokenId);
+
+        return response()->json([
+			'status' => 202,
+			'message' => 'Successfully logged-out from account.'
+		], 202);
+    }
 
 
 	public function me()

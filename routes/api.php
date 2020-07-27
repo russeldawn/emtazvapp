@@ -24,11 +24,14 @@ Route::group(['middleware' => 'auth:api'], function ()
 	Route::namespace('API')->group( function ()
 	{
 		Route::get('me', 'AuthController@me');
+		Route::get('logout', 'AuthController@logout');
 
 		Route::post('dashboard', 'DashboardController@show');
 
 		Route::apiResource('users', 'UserController');
 		Route::apiResource('transaction', 'TransactionController');
+		Route::apiResource('barangay', 'BarangayController');
+
 	});
 
 });
